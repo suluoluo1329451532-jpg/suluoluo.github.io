@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数字媒体作品集 | Portfolio</title>
+    <meta
+      name="description"
+      content="数字媒体学生个人作品集，展示 Unity、UE5 场景、次世代场景、建模、海报与视频作品。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="回到首页">
+        <span class="brand-mark">DM</span>
+        <span>Portfolio</span>
+      </a>
+      <nav class="top-nav" aria-label="主导航">
+        <a href="#works">作品</a>
+        <a href="#process">流程</a>
+        <a href="#about">关于</a>
+        <a href="#contact">联系</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-media" aria-hidden="true">
+          <img src="./assets/hero-environment.png" alt="" />
+        </div>
+        <div class="hero-content">
+          <p class="eyebrow">Digital Media / Game Art / Environment Design</p>
+          <h1>你的名字</h1>
+          <p class="hero-copy">
+            数字媒体专业学生，专注 Unity 与 UE5 游戏制作、UE5 地编、次世代场景全流程、建模与视觉海报设计。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#works">查看作品</a>
+            <a class="button secondary" href="#contact">获取联系</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="works" class="section works-section">
+        <div class="section-heading">
+          <p class="eyebrow">Selected Works</p>
+          <h2>精选作品</h2>
+        </div>
+        <div class="filter-bar" role="tablist" aria-label="作品分类">
+          <button class="filter-button is-active" type="button" data-filter="all">全部</button>
+          <button class="filter-button" type="button" data-filter="ue5">UE5 场景</button>
+          <button class="filter-button" type="button" data-filter="unity">Unity</button>
+          <button class="filter-button" type="button" data-filter="modeling">建模</button>
+          <button class="filter-button" type="button" data-filter="poster">海报</button>
+          <button class="filter-button" type="button" data-filter="video">视频</button>
+        </div>
+        <div class="work-grid" id="workGrid" aria-live="polite"></div>
+      </section>
+
+      <section id="process" class="section process-section">
+        <div class="section-heading">
+          <p class="eyebrow">Pipeline</p>
+          <h2>创作流程能力</h2>
+        </div>
+        <div class="process-list">
+          <article>
+            <span>01</span>
+            <h3>概念与参考</h3>
+            <p>整理情绪板、结构参考、材质参考，明确场景叙事和视觉层级。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>建模与贴图</h3>
+            <p>完成高低模、UV、烘焙、PBR 材质制作，并兼顾游戏实时性能。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>引擎整合</h3>
+            <p>在 Unity 或 UE5 中完成地编、灯光、后期、交互展示和镜头调度。</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>展示包装</h3>
+            <p>输出渲染图、过程拆解、视频演示与海报版式，用于作品集展示。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" class="section about-section">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2>关于我</h2>
+        </div>
+        <div class="about-copy">
+          <p>
+            我正在建立面向游戏美术、关卡场景、数字视觉方向的个人作品集。熟悉 Unity、UE5、三维建模、次世代场景制作、海报视觉设计等内容。
+          </p>
+          <ul class="skill-tags" aria-label="技能标签">
+            <li>Unreal Engine 5</li>
+            <li>Unity</li>
+            <li>Environment Art</li>
+            <li>3D Modeling</li>
+            <li>PBR Workflow</li>
+            <li>Poster Design</li>
+            <li>Video Editing</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact-section">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>联系与简历</h2>
+        </div>
+        <div class="contact-panel">
+          <a href="mailto:yourname@example.com">yourname@example.com</a>
+          <a href="#" aria-label="Bilibili 或 ArtStation 链接">Bilibili / ArtStation / Behance</a>
+          <a href="#" aria-label="简历下载链接">下载简历 PDF</a>
+        </div>
+      </section>
+    </main>
+
+    <dialog class="project-dialog" id="projectDialog" aria-labelledby="dialogTitle">
+      <button class="dialog-close" type="button" aria-label="关闭详情">×</button>
+      <div class="dialog-media" id="dialogMedia"></div>
+      <div class="dialog-body">
+        <p class="eyebrow" id="dialogCategory"></p>
+        <h2 id="dialogTitle"></h2>
+        <p id="dialogDescription"></p>
+        <dl class="meta-list" id="dialogMeta"></dl>
+      </div>
+    </dialog>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
