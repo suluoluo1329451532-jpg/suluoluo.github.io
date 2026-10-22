@@ -126,7 +126,7 @@ const categories = [
 const profile = {
   name: "杨蕙咛",
   en: "YHN®",
-  title: "Digital Artist / Game Art / Environment Design",
+  title: "数字艺术家 / 游戏美术 / 环境设计",
   bio: "数字媒体专业学生，专注 Unity 与 UE5 游戏制作、UE5 地编、次世代场景全流程、建模与视觉海报设计。",
   email: "",           // TODO: fill in real email
   social: {
