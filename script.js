@@ -106,6 +106,7 @@ function renderProjects(filter = "all") {
           <span class="work-thumb">
             <img src="${project.thumb}" alt="${project.title}" loading="lazy" />
             <span class="media-badge">${project.mediaType === "video" ? "VIDEO" : "IMAGE"}</span>
+            <span class="card-index">${String(projects.indexOf(project) + 1).padStart(2, "0")}</span>
           </span>
           <span class="work-info">
             <span class="eyebrow">${project.category}</span>
