@@ -133,3 +133,65 @@ function restoreWorksFilter() {
     els.forEach(function(el) { el.classList.add("is-visible"); });
   }
 })();
+/* ---- Cyber Buddy (home page only) ---- */
+(function() {
+  var buddy = document.getElementById("cyberBuddy");
+  var menu = document.getElementById("buddyMenu");
+  var speech = document.getElementById("buddySpeech");
+  var closeBtn = document.querySelector(".buddy-menu-close");
+  if (!buddy || !menu) return;
+
+  var isMenuOpen = false;
+
+  function openMenu() {
+    isMenuOpen = true;
+    buddy.classList.add("is-menu-open");
+    buddy.setAttribute("aria-expanded", "true");
+    menu.setAttribute("aria-hidden", "false");
+    var firstItem = menu.querySelector(".buddy-menu-item");
+    if (firstItem) firstItem.focus();
+  }
+
+  function closeMenu() {
+    isMenuOpen = false;
+    buddy.classList.remove("is-menu-open");
+    buddy.setAttribute("aria-expanded", "false");
+    menu.setAttribute("aria-hidden", "true");
+    buddy.focus();
+  }
+
+  buddy.addEventListener("click", function(e) {
+    if (e.target.closest(".buddy-menu-item")) return;
+    if (e.target.closest(".buddy-menu-close")) return;
+    if (isMenuOpen) { closeMenu(); } else { openMenu(); }
+  });
+
+  buddy.addEventListener("keydown", function(e) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      if (isMenuOpen) { closeMenu(); } else { openMenu(); }
+    }
+    if (e.key === "Escape" && isMenuOpen) {
+      closeMenu();
+    }
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function(e) {
+      e.stopPropagation();
+      closeMenu();
+    });
+  }
+
+  document.addEventListener("click", function(e) {
+    if (isMenuOpen && !buddy.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape" && isMenuOpen) {
+      closeMenu();
+    }
+  });
+})();
