@@ -31,6 +31,15 @@
       </nav>
     </header>
 
+    <div class="sub-nav">
+      <a class="back-button" id="backButton" href="./index.html" data-fallback="./index.html">← 返回</a>
+      <nav class="breadcrumb" aria-label="页面路径">
+        <a href="./index.html">Home</a>
+        <span class="crumb-sep">›</span>
+        <span class="crumb-current">Works</span>
+      </nav>
+    </div>
+
     <main class="sub-page" id="top">
       <section class="page-hero">
         <p class="eyebrow">All Works / Portfolio</p>
@@ -93,11 +102,14 @@
           filterBar.querySelectorAll(".filter-button").forEach(b => b.classList.remove("is-active"));
           btn.classList.add("is-active");
           renderGrid(btn.dataset.filter);
+          saveWorksFilter(btn.dataset.filter);
         });
 
         grid.addEventListener("click", function(e) {
           const card = e.target.closest(".work-card");
           if (!card) return;
+          const activeBtn = filterBar.querySelector(".filter-button.is-active");
+          if (activeBtn) saveWorksFilter(activeBtn.dataset.filter);
           window.location.href = "./work.html?id=" + card.dataset.slug;
         });
 
@@ -110,7 +122,15 @@
         });
 
         renderFilters();
-        renderGrid("all");
+        const savedFilter = restoreWorksFilter();
+        const savedBtn = filterBar.querySelector('[data-filter="' + savedFilter + '"]');
+        if (savedBtn && savedFilter !== "all") {
+          filterBar.querySelectorAll(".filter-button").forEach(b => b.classList.remove("is-active"));
+          savedBtn.classList.add("is-active");
+          renderGrid(savedFilter);
+        } else {
+          renderGrid("all");
+        }
       })();
     </script>
     <script src="./script.js"></script>

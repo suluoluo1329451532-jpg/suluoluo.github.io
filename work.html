@@ -31,6 +31,17 @@
       </nav>
     </header>
 
+    <div class="sub-nav">
+      <a class="back-button" id="backButton" href="./works.html" data-fallback="./works.html">← 返回</a>
+      <nav class="breadcrumb" aria-label="页面路径">
+        <a href="./index.html">Home</a>
+        <span class="crumb-sep">›</span>
+        <a href="./works.html" id="crumbWorks">Works</a>
+        <span class="crumb-sep">›</span>
+        <span class="crumb-current" id="crumbTitle"></span>
+      </nav>
+    </div>
+
     <main class="sub-page" id="top">
       <div id="projectNotFound" style="display:none;padding:140px 20px;text-align:center;">
         <p class="eyebrow">404</p>
@@ -95,6 +106,7 @@
         detail.style.display = "";
 
         document.title = project.title + " — YHN® Digital Art Archive";
+        document.getElementById("crumbTitle").textContent = project.title;
 
         document.getElementById("detailCategory").textContent = project.category;
         document.getElementById("detailTitle").textContent = project.title;
