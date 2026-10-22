@@ -25,7 +25,7 @@
       </button>
       <div class="nav-divider"></div>
       <nav class="top-nav" id="topNav" aria-label="主导航">
-        <a href="./index.html" class="is-active"><span class="nav-num">01</span>首页</a>
+        <a href="./index.html" class="is-active" aria-current="page"><span class="nav-num">01</span>首页</a>
         <a href="./works.html"><span class="nav-num">02</span>作品集</a>
         <a href="./about.html"><span class="nav-num">03</span>关于</a>
         <a href="./terminal.html"><span class="nav-num">04</span>终端</a>
@@ -35,7 +35,7 @@
     <main id="top">
       <section class="hero">
         <div class="hero-content">
-          <p class="eyebrow">数字艺术档案 / 游戏美术 / 环境设计</p>
+          <p class="eyebrow">YHN® / Digital Art Archive</p>
           <h1>杨蕙咛</h1>
           <p class="hero-sub">YHN® — 数字艺术家</p>
           <p class="hero-copy">
@@ -46,13 +46,29 @@
             <a class="button secondary" href="./about.html">关于我</a>
             <a class="button secondary" href="./terminal.html">&gt;_ 终端</a>
           </div>
+          <dl class="hero-spec" aria-label="创作方向与能力范围">
+            <div>
+              <dt>方向</dt>
+              <dd>游戏美术 / 环境设计</dd>
+            </div>
+            <div>
+              <dt>范围</dt>
+              <dd>Unity / UE5 / 3D / 视觉设计</dd>
+            </div>
+            <div>
+              <dt>状态</dt>
+              <dd>作品集更新中</dd>
+            </div>
+          </dl>
         </div>
         <div class="hero-visual" aria-hidden="false">
-          <div class="hero-visual-frame">
-            <img src="./assets/hero-environment.png" alt="UE5 环境场景 — 杨蕙咛作品" />
+          <a class="hero-visual-frame" href="./work.html?id=ruins-research-lab" aria-label="查看代表作品：遗迹研究站">
+            <img src="./assets/hero-environment.png" alt="UE5 环境场景 — 杨蕙咛作品" loading="eager" onerror="this.style.display='none';" />
+            <span class="hero-visual-shade" aria-hidden="true"></span>
+            <span class="hero-visual-tag">TEMP</span>
+            <span class="hero-visual-title">遗迹研究站</span>
             <span class="hero-visual-label">UE5 ENVIRONMENT / 2026</span>
-            <span class="hero-visual-tag">FEATURED</span>
-          </div>
+          </a>
         </div>
       </section>
 
@@ -61,6 +77,7 @@
         <div class="section-heading">
           <p class="eyebrow">精选作品</p>
           <h2>精选作品</h2>
+          <p class="section-note">从当前练习与课程项目中挑选，后续会持续替换为完整作品记录。</p>
         </div>
         <div class="work-grid" id="featuredGrid" aria-live="polite"></div>
         <div class="section-more">
@@ -72,6 +89,7 @@
         <div class="section-heading">
           <p class="eyebrow">关于</p>
           <h2>关于我</h2>
+          <p class="section-note">正在建立面向游戏美术、关卡场景与数字视觉方向的个人作品集。</p>
         </div>
         <div class="about-copy">
           <p>
@@ -94,9 +112,9 @@
         <div class="section-heading">
           <p class="eyebrow">联系</p>
           <h2>联系与简历</h2>
+          <p class="section-note">真实联系方式与简历文件尚未上传，当前仅提供关于页入口。</p>
         </div>
         <div class="contact-panel" id="homeContactLinks" aria-label="联系方式与简历入口"></div>
-        </div>
       </section>
     </main>
 
@@ -114,17 +132,19 @@
         const featured = projects.filter(function(p) { return p.featured; }).slice(0, 4);
 
         grid.innerHTML = featured.map(function(p, i) {
-          const sizes = ["wide", "tall", "wide", "tall"];
+          const sizes = ["feature", "wide", "tall", "feature"];
           const sizeClass = " work-card--" + sizes[i % sizes.length];
           return '<article class="work-card' + sizeClass + '" tabindex="0" role="link" data-slug="' + p.slug + '">' +
-            '<span class="work-thumb">' +
-              '<img src="' + p.cover + '" alt="' + p.title + '" loading="lazy" onerror="this.style.display=\'none\'" />' +
+            '<span class="work-thumb" data-placeholder="true">' +
+              '<span class="placeholder-tag">TEMP</span>' +
+              '<span class="placeholder-shape" aria-hidden="true"></span>' +
               '<span class="card-index">' + String(i + 1).padStart(2, "0") + '</span>' +
             '</span>' +
             '<span class="work-info">' +
               '<span class="eyebrow">' + p.category + '</span>' +
               '<h3>' + p.title + '</h3>' +
               '<p>' + p.summary + '</p>' +
+                ((p.tools && p.tools.length) ? '<span class="work-tools">' + p.tools.slice(0, 3).map(function(t) { return '<span>' + t + '</span>'; }).join('') + '</span>' : '') +
               '<span class="work-arrow">查看项目 →</span>' +
             '</span>' +
           '</article>';
