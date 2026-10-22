@@ -101,8 +101,11 @@ function renderProjects(filter = "all") {
 
   grid.innerHTML = visibleProjects
     .map(
-      (project) => `
-        <article class="work-card" tabindex="0" role="button" data-index="${projects.indexOf(project)}">
+      (project, i) => {
+        const sizes = ["feature", "wide", "tall", "wide", "tall", "wide"];
+        const sizeClass = ` work-card--${sizes[i % sizes.length]}`;
+        return `
+        <article class="work-card${sizeClass}" tabindex="0" role="button" data-index="${projects.indexOf(project)}">
           <span class="work-thumb">
             <img src="${project.thumb}" alt="${project.title}" loading="lazy" />
             <span class="media-badge">${project.mediaType === "video" ? "VIDEO" : "IMAGE"}</span>
@@ -115,7 +118,8 @@ function renderProjects(filter = "all") {
             <span class="work-arrow">View Project →</span>
           </span>
         </article>
-      `,
+      `;
+      },
     )
     .join("");
 }
