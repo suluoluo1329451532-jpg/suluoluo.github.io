@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
     <header class="site-header">
       <a class="brand" href="#top" aria-label="回到首页">
         <span class="brand-mark">DM</span>
@@ -50,15 +51,16 @@
         <div class="filter-bar" role="tablist" aria-label="作品分类">
           <button class="filter-button is-active" type="button" data-filter="all">全部</button>
           <button class="filter-button" type="button" data-filter="ue5">UE5 场景</button>
-          <button class="filter-button" type="button" data-filter="unity">Unity</button>
-          <button class="filter-button" type="button" data-filter="modeling">建模</button>
-          <button class="filter-button" type="button" data-filter="poster">海报</button>
+          <button class="filter-button" type="button" data-filter="unity">Unity 游戏</button>
+          <button class="filter-button" type="button" data-filter="design">平面设计</button>
+          <button class="filter-button" type="button" data-filter="modeling">三维建模</button>
+          <button class="filter-button" type="button" data-filter="animation">Blender 动画</button>
           <button class="filter-button" type="button" data-filter="video">视频</button>
         </div>
         <div class="work-grid" id="workGrid" aria-live="polite"></div>
       </section>
 
-      <section id="process" class="section process-section">
+      <section id="process" class="section process-section reveal">
         <div class="section-heading">
           <p class="eyebrow">Pipeline</p>
           <h2>创作流程能力</h2>
@@ -87,7 +89,7 @@
         </div>
       </section>
 
-      <section id="about" class="section about-section">
+      <section id="about" class="section about-section reveal">
         <div>
           <p class="eyebrow">About</p>
           <h2>关于我</h2>
@@ -108,7 +110,7 @@
         </div>
       </section>
 
-      <section id="contact" class="section contact-section">
+      <section id="contact" class="section contact-section reveal">
         <div>
           <p class="eyebrow">Contact</p>
           <h2>联系与简历</h2>

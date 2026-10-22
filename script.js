@@ -15,7 +15,7 @@ const projects = [
   },
   {
     title: "交互解谜原型",
-    category: "Unity 项目",
+    category: "Unity 游戏",
     filter: "unity",
     thumb: "./assets/work-unity-game.png",
     mediaType: "image",
@@ -43,8 +43,8 @@ const projects = [
   },
   {
     title: "城市节奏海报",
-    category: "海报设计",
-    filter: "poster",
+    category: "平面设计",
+    filter: "design",
     thumb: "./assets/work-poster.png",
     mediaType: "image",
     description:
@@ -111,6 +111,7 @@ function renderProjects(filter = "all") {
             <span class="eyebrow">${project.category}</span>
             <h3>${project.title}</h3>
             <p>${project.description}</p>
+            <span class="work-arrow">View Project →</span>
           </span>
         </article>
       `,
@@ -181,3 +182,25 @@ dialog.addEventListener("click", (event) => {
 });
 
 renderProjects();
+
+const scrollProgress = document.querySelector("#scrollProgress");
+
+window.addEventListener("scroll", () => {
+  const scrolled = document.documentElement.scrollTop;
+  const total = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  scrollProgress.style.width = `${(scrolled / total) * 100}%`;
+});
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+);
+
+document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
