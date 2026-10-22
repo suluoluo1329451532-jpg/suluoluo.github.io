@@ -1,7 +1,7 @@
 /* ============================================================
  * YHN® Digital Art Archive — Shared Scripts
- * Loaded on every page. Handles nav, breadcrumbs, back button,
- * scroll progress, reveals, and navigation history tracking.
+ * Loaded on every page. Handles nav, scroll progress, reveals,
+ * and navigation history tracking.
  * ============================================================ */
 
 /* ---- Navigation History (sessionStorage) ---- */
@@ -59,17 +59,6 @@ function navigateBack(fallback) {
 
 /* Push current page to history on load */
 pushNavPage();
-
-/* ---- Back Button (auto-wire if present) ---- */
-(function() {
-  var backBtn = document.getElementById("backButton");
-  if (!backBtn) return;
-  var fallback = backBtn.getAttribute("data-fallback") || "index.html";
-  backBtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    navigateBack(fallback);
-  });
-})();
 
 /* ---- Works filter state persistence ---- */
 var FILTER_KEY = "yhn_works_filter";
@@ -133,40 +122,108 @@ function restoreWorksFilter() {
     els.forEach(function(el) { el.classList.add("is-visible"); });
   }
 })();
-/* ---- Cyber Buddy (home page only) ---- */
+
+/* ---- Cyber Buddy (all pages, draggable) ---- */
 (function() {
-  var buddy = document.getElementById("cyberBuddy");
-  var menu = document.getElementById("buddyMenu");
-  var speech = document.getElementById("buddySpeech");
-  var closeBtn = document.querySelector(".buddy-menu-close");
-  if (!buddy || !menu) return;
+  var SVG = '<svg class="buddy-sprite" viewBox="0 0 32 32" width="80" height="80" aria-hidden="true" shape-rendering="crispEdges">'
+    + '<rect x="10" y="4" width="12" height="2" fill="#B44CFF" opacity="0.4"/>'
+    + '<rect x="8" y="6" width="16" height="12" rx="1" fill="#16162A"/>'
+    + '<rect x="8" y="6" width="16" height="2" fill="#B44CFF" opacity="0.3"/>'
+    + '<rect x="10" y="10" width="4" height="3" fill="#FF3CAC"/>'
+    + '<rect x="18" y="10" width="4" height="3" fill="#FF3CAC"/>'
+    + '<rect x="14" y="15" width="4" height="1" fill="#45F3E2" opacity="0.6"/>'
+    + '<rect x="11" y="18" width="10" height="8" rx="1" fill="#16162A"/>'
+    + '<rect x="11" y="18" width="10" height="1" fill="#45F3E2" opacity="0.3"/>'
+    + '<rect x="13" y="21" width="2" height="2" fill="#45F3E2" opacity="0.7"/>'
+    + '<rect x="17" y="21" width="2" height="2" fill="#45F3E2" opacity="0.7"/>'
+    + '<rect x="6" y="19" width="2" height="4" fill="#B44CFF" opacity="0.5"/>'
+    + '<rect x="24" y="19" width="2" height="4" fill="#B44CFF" opacity="0.5"/>'
+    + '<rect x="12" y="27" width="3" height="2" fill="#16162A"/>'
+    + '<rect x="17" y="27" width="3" height="2" fill="#16162A"/>'
+    + '</svg>';
+
+  var container = document.createElement("div");
+  container.id = "cyberBuddy";
+  container.className = "cyber-buddy";
+  container.setAttribute("aria-label", "Cyber Buddy 数字助手");
+  container.setAttribute("role", "button");
+  container.setAttribute("tabindex", "0");
+  container.innerHTML =
+    '<div class="buddy-speech" aria-hidden="true">你好！我是 Cyber Buddy 👾</div>'
+    + SVG
+    + '<div class="buddy-menu" role="menu" aria-hidden="true">'
+    + '<a class="buddy-menu-item" href="./works.html" role="menuitem">查看作品 →</a>'
+    + '<a class="buddy-menu-item" href="./terminal.html" role="menuitem">&gt;_ 进入终端</a>'
+    + '<button class="buddy-menu-close" type="button" aria-label="关闭菜单">×</button>'
+    + '</div>';
+
+  document.body.appendChild(container);
 
   var isMenuOpen = false;
+  var isDragging = false;
+  var startX = 0, startY = 0;
+  var offX = 0, offY = 0;
 
   function openMenu() {
     isMenuOpen = true;
-    buddy.classList.add("is-menu-open");
-    buddy.setAttribute("aria-expanded", "true");
-    menu.setAttribute("aria-hidden", "false");
-    var firstItem = menu.querySelector(".buddy-menu-item");
+    container.classList.add("is-menu-open");
+    container.setAttribute("aria-expanded", "true");
+    var firstItem = container.querySelector(".buddy-menu-item");
     if (firstItem) firstItem.focus();
   }
 
   function closeMenu() {
     isMenuOpen = false;
-    buddy.classList.remove("is-menu-open");
-    buddy.setAttribute("aria-expanded", "false");
-    menu.setAttribute("aria-hidden", "true");
-    buddy.focus();
+    container.classList.remove("is-menu-open");
+    container.setAttribute("aria-expanded", "false");
+    container.focus();
   }
 
-  buddy.addEventListener("click", function(e) {
-    if (e.target.closest(".buddy-menu-item")) return;
-    if (e.target.closest(".buddy-menu-close")) return;
-    if (isMenuOpen) { closeMenu(); } else { openMenu(); }
+  /* Drag to move */
+  container.addEventListener("pointerdown", function(e) {
+    if (e.target.closest(".buddy-menu-item") || e.target.closest(".buddy-menu-close")) return;
+    if (e.button !== 0) return;
+    isDragging = false;
+    startX = e.clientX;
+    startY = e.clientY;
+    var rect = container.getBoundingClientRect();
+    offX = e.clientX - rect.left;
+    offY = e.clientY - rect.top;
+    container.setPointerCapture(e.pointerId);
   });
 
-  buddy.addEventListener("keydown", function(e) {
+  container.addEventListener("pointermove", function(e) {
+    if (e.buttons !== 1 || !container.hasPointerCapture(e.pointerId)) return;
+    var dx = e.clientX - startX;
+    var dy = e.clientY - startY;
+    if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+      isDragging = true;
+      container.classList.add("is-dragging");
+      var x = e.clientX - offX;
+      var y = e.clientY - offY;
+      var maxX = window.innerWidth - 80;
+      var maxY = window.innerHeight - 80;
+      x = Math.max(0, Math.min(x, maxX));
+      y = Math.max(0, Math.min(y, maxY));
+      container.style.left = x + "px";
+      container.style.top = y + "px";
+      container.style.bottom = "auto";
+      container.style.right = "auto";
+      container.classList.add("is-dragged");
+    }
+  });
+
+  container.addEventListener("pointerup", function(e) {
+    container.releasePointerCapture(e.pointerId);
+    container.classList.remove("is-dragging");
+    if (!isDragging) {
+      if (isMenuOpen) { closeMenu(); } else { openMenu(); }
+    }
+    isDragging = false;
+  });
+
+  /* Keyboard */
+  container.addEventListener("keydown", function(e) {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       if (isMenuOpen) { closeMenu(); } else { openMenu(); }
@@ -176,6 +233,7 @@ function restoreWorksFilter() {
     }
   });
 
+  var closeBtn = container.querySelector(".buddy-menu-close");
   if (closeBtn) {
     closeBtn.addEventListener("click", function(e) {
       e.stopPropagation();
@@ -184,7 +242,7 @@ function restoreWorksFilter() {
   }
 
   document.addEventListener("click", function(e) {
-    if (isMenuOpen && !buddy.contains(e.target)) {
+    if (isMenuOpen && !container.contains(e.target)) {
       closeMenu();
     }
   });

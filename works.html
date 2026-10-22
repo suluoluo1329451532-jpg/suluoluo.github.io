@@ -32,15 +32,6 @@
       </nav>
     </header>
 
-    <div class="sub-nav">
-      <a class="back-button" id="backButton" href="./index.html" data-fallback="./index.html">← 返回</a>
-      <nav class="breadcrumb" aria-label="页面路径">
-        <a href="./index.html"><span class="nav-num">01</span>首页</a>
-        <span class="crumb-sep">›</span>
-        <span class="crumb-current">作品集</span>
-      </nav>
-    </div>
-
     <main class="sub-page" id="top">
       <section class="page-hero">
         <p class="eyebrow">全部作品 / 作品集</p>
@@ -48,10 +39,12 @@
       </section>
 
       <section class="section works-section">
-        <div class="filter-bar" id="filterBar" role="tablist" aria-label="作品分类筛选"></div>
+        <p class="eyebrow">项目分类 / Categories</p>
+        <div class="filter-bar" id="filterBar" role="group" aria-label="作品分类筛选"></div>
         <div class="work-grid" id="workGrid" aria-live="polite"></div>
         <div class="empty-state" id="emptyState" style="display:none">
-          <p>该分类暂无作品。</p>
+          <p id="emptyMessage">该分类暂无作品。</p>
+          <button class="button secondary" id="clearFilter" type="button">查看全部作品</button>
         </div>
       </section>
     </main>
@@ -70,18 +63,34 @@
         const filterBar = document.getElementById("filterBar");
         const emptyState = document.getElementById("emptyState");
 
+        let currentFilter = "all";
+
         function renderFilters() {
           filterBar.innerHTML = categories.map((cat, i) =>
-            `<button class="filter-button${i === 0 ? " is-active" : ""}" type="button" data-filter="${cat.key}">${cat.label}</button>`
+            `<button class="filter-button${cat.key === "all" ? " is-active" : ""}" type="button" data-filter="${cat.key}" aria-pressed="${cat.key === "all"}">${cat.label}</button>`
           ).join("");
         }
 
+        function updateFilterState(filter) {
+          currentFilter = filter;
+          filterBar.querySelectorAll(".filter-button").forEach(button => {
+            const isActive = button.dataset.filter === filter;
+            button.classList.toggle("is-active", isActive);
+            button.setAttribute("aria-pressed", String(isActive));
+          });
+        }
+
         function renderGrid(filter) {
-          const list = filter === "all" ? projects : projects.filter(p => p.filter === filter || p.category.toLowerCase().includes(filter));
+          const list = filter === "all" ? projects : projects.filter(p => p.filter === filter);
           emptyState.style.display = list.length === 0 ? "" : "none";
+          if (list.length === 0) {
+            const category = categories.find(cat => cat.key === filter);
+            emptyMessage.textContent = (category ? category.label : "当前筛选") + "暂时没有可展示的作品。";
+          }
           grid.innerHTML = list.map((p, i) => {
             const sizes = ["feature", "wide", "tall", "wide", "tall", "wide"];
             const sizeClass = " work-card--" + sizes[i % sizes.length];
+            const toolsHtml = (p.tools && p.tools.length) ? '<span class="work-tools">' + p.tools.map(function(t) { return '<span>' + t + '</span>'; }).join('') + '</span>' : '';
             return '<article class="work-card' + sizeClass + '" tabindex="0" role="link" data-slug="' + p.slug + '">' +
               '<span class="work-thumb">' +
                 '<img src="' + p.cover + '" alt="' + p.title + '" loading="lazy" onerror="this.style.display=\'none\'" />' +
@@ -91,6 +100,7 @@
                 '<span class="eyebrow">' + p.category + '</span>' +
                 '<h3>' + p.title + '</h3>' +
                 '<p>' + p.summary + '</p>' +
+                toolsHtml +
                 '<span class="work-arrow">查看项目 →</span>' +
               '</span>' +
             '</article>';
@@ -100,10 +110,15 @@
         filterBar.addEventListener("click", function(e) {
           const btn = e.target.closest(".filter-button");
           if (!btn) return;
-          filterBar.querySelectorAll(".filter-button").forEach(b => b.classList.remove("is-active"));
-          btn.classList.add("is-active");
+          updateFilterState(btn.dataset.filter);
           renderGrid(btn.dataset.filter);
           saveWorksFilter(btn.dataset.filter);
+        });
+
+        clearFilter.addEventListener("click", function() {
+          updateFilterState("all");
+          renderGrid("all");
+          saveWorksFilter("all");
         });
 
         grid.addEventListener("click", function(e) {
@@ -124,12 +139,13 @@
 
         renderFilters();
         const savedFilter = restoreWorksFilter();
-        const savedBtn = filterBar.querySelector('[data-filter="' + savedFilter + '"]');
-        if (savedBtn && savedFilter !== "all") {
-          filterBar.querySelectorAll(".filter-button").forEach(b => b.classList.remove("is-active"));
-          savedBtn.classList.add("is-active");
+        const savedCategoryExists = categories.some(cat => cat.key === savedFilter);
+        const restoredFilter = savedCategoryExists ? savedFilter : "all";
+        if (restoredFilter !== "all") {
+          updateFilterState(restoredFilter);
           renderGrid(savedFilter);
         } else {
+          updateFilterState("all");
           renderGrid("all");
         }
       })();

@@ -31,16 +31,11 @@
       </nav>
     </header>
 
-<div class="sub-nav">
-  <a class="back-button" id="backButton" href="./index.html" data-fallback="./index.html">← 返回</a>
-  <nav class="breadcrumb" aria-label="页面路径">
-    <a href="./index.html"><span class="nav-num">01</span>首页</a>
-    <span class="crumb-sep">›</span>
-    <span class="crumb-current">终端</span>
-  </nav>
-</div>
-
     <main class="sub-page terminal-page" id="top">
+      <section class="page-hero">
+        <p class="eyebrow">终端 / Terminal</p>
+        <h1>终端</h1>
+      </section>
       <div class="terminal-wrap">
         <div class="terminal-header">
           <span class="term-dot" style="background:#ff5f57;"></span>
@@ -103,7 +98,7 @@
             print("  resume          简历状态");
             print("  contact         联系方式");
             print("  whoami          当前身份");
-            print("  goto <page>     跳转到页面 (home|works|about)");
+            print("  goto <page>     跳转到页面 (home|works|about|terminal)");
             print("  open <id>       打开指定作品详情");
             print("  clear           清空终端");
           },
@@ -158,13 +153,13 @@
             clear();
           },
           goto: function(args) {
-            var pages = { home: "index.html", works: "works.html", about: "about.html" };
+            var pages = { home: "index.html", works: "works.html", about: "about.html", terminal: "terminal.html" };
             var target = args[0];
             if (pages[target]) {
               print("跳转到 " + target + " …");
               setTimeout(function() { window.location.href = pages[target]; }, 500);
             } else {
-              print("未知页面: " + (target || "(空)") + "。可用: home / works / about");
+              print("未知页面: " + (target || "(空)") + "。可用: home / works / about / terminal");
             }
           },
           open: function(args) {

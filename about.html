@@ -32,15 +32,6 @@
       </nav>
     </header>
 
-    <div class="sub-nav">
-      <a class="back-button" id="backButton" href="./index.html" data-fallback="./index.html">← 返回</a>
-      <nav class="breadcrumb" aria-label="页面路径">
-        <a href="./index.html"><span class="nav-num">01</span>首页</a>
-        <span class="crumb-sep">›</span>
-        <span class="crumb-current">关于</span>
-      </nav>
-    </div>
-
     <main class="sub-page" id="top">
       <section class="page-hero">
         <p class="eyebrow">关于 / 个人简介</p>
@@ -53,6 +44,7 @@
         </div>
         <div class="about-copy">
           <p id="aboutBio"></p>
+          <p class="detail-summary" id="aboutTitle"></p>
           <ul class="skill-tags" id="aboutSkills" aria-label="技能标签"></ul>
         </div>
       </section>
@@ -60,36 +52,37 @@
       <section class="section about-block">
         <h2>教育背景</h2>
         <div class="about-timeline" id="aboutEducation">
-          <p class="detail-empty">待补充。</p>
+          <div class="about-placeholder"><span class="placeholder-tag">EMPTY</span><span>此模块暂无数据，待后续补充。</span></div>
         </div>
       </section>
 
       <section class="section about-block">
         <h2>项目与实习经历</h2>
         <div class="about-timeline" id="aboutExperience">
-          <p class="detail-empty">待补充。</p>
+          <div class="about-placeholder"><span class="placeholder-tag">EMPTY</span><span>此模块暂无数据，待后续补充。</span></div>
         </div>
       </section>
 
       <section class="section about-block">
         <h2>竞赛与荣誉</h2>
         <div class="about-timeline" id="aboutAwards">
-          <p class="detail-empty">待补充。</p>
+          <div class="about-placeholder"><span class="placeholder-tag">EMPTY</span><span>此模块暂无数据，待后续补充。</span></div>
         </div>
       </section>
 
       <section class="section about-block">
         <h2>简历下载</h2>
-        <div class="contact-panel">
-          <a id="resumeLink" href="#" style="opacity:0.5;pointer-events:none;">
-            📄 简历 PDF <small>（待上传）</small>
-          </a>
+        <div class="contact-panel" id="resumePanel">
+          <div class="about-placeholder">
+            <span class="placeholder-tag">PENDING</span>
+            <span>简历 PDF 尚未上传。</span>
+          </div>
         </div>
       </section>
 
       <section class="section about-block">
         <h2>联系方式</h2>
-        <div class="contact-panel" id="contactLinks"></div>
+        <div class="contact-panel" id="contactPanel"></div>
       </section>
     </main>
 
@@ -104,21 +97,38 @@
     <script>
       (function() {
         document.getElementById("aboutBio").textContent = profile.bio;
+        document.getElementById("aboutTitle").textContent = "求职方向：" + profile.title;
         document.getElementById("aboutSkills").innerHTML =
           profile.skills.map(s => "<li>" + s + "</li>").join("");
 
-        const emailLink = profile.email
-          ? '<a href="mailto:' + profile.email + '">' + profile.email + '</a>'
-          : '<a href="#" style="opacity:0.5;pointer-events:none;">邮箱（待补充）</a>';
-        document.getElementById("contactLinks").innerHTML = emailLink;
-
         if (profile.resume) {
-          const rl = document.getElementById("resumeLink");
-          rl.href = profile.resume;
-          rl.style.opacity = "";
-          rl.style.pointerEvents = "";
-          rl.innerHTML = "📄 下载简历 PDF";
+          const resumePanel = document.getElementById("resumePanel");
+          resumePanel.innerHTML = "";
+          const resumeLink = document.createElement("a");
+          resumeLink.href = profile.resume;
+          resumeLink.download = "";
+          resumeLink.textContent = "📄 下载简历 PDF";
+          resumePanel.appendChild(resumeLink);
         }
+
+        const socialLabels = {
+          bilibili: "Bilibili",
+          artstation: "ArtStation",
+          behance: "Behance"
+        };
+        const contactLinks = [];
+        if (profile.email) {
+          contactLinks.push('<a href="mailto:' + profile.email + '">' + profile.email + '</a>');
+        }
+        Object.keys(profile.social).forEach(function(key) {
+          if (profile.social[key]) {
+            contactLinks.push('<a href="' + profile.social[key] + '" target="_blank" rel="noopener noreferrer">' + socialLabels[key] + ' ↗</a>');
+          }
+        });
+        if (!contactLinks.length) {
+          contactLinks.push('<div class="about-placeholder"><span class="placeholder-tag">PENDING</span><span>真实邮箱与社交链接待补充。</span></div>');
+        }
+        document.getElementById("contactPanel").innerHTML = contactLinks.join("");
       })();
     </script>
     <script src="./script.js"></script>

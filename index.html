@@ -46,12 +46,6 @@
             <a class="button secondary" href="./about.html">关于我</a>
             <a class="button secondary" href="./terminal.html">&gt;_ 终端</a>
           </div>
-          <ul class="hero-tags" aria-label="技术方向">
-            <li>UE5 场景</li>
-            <li>Unity 游戏</li>
-            <li>次世代建模</li>
-            <li>视觉设计</li>
-          </ul>
         </div>
         <div class="hero-visual" aria-hidden="false">
           <div class="hero-visual-frame">
@@ -62,30 +56,6 @@
         </div>
       </section>
 
-      <div class="cyber-buddy" id="cyberBuddy" aria-label="Cyber Buddy 数字助手" role="button" tabindex="0">
-        <div class="buddy-speech" id="buddySpeech" aria-hidden="true">欢迎来到我的数字作品档案！</div>
-        <svg class="buddy-sprite" viewBox="0 0 32 32" width="56" height="56" aria-hidden="true" shape-rendering="crispEdges">
-          <rect x="10" y="4" width="12" height="2" fill="#B44CFF" opacity="0.4"/>
-          <rect x="8" y="6" width="16" height="12" rx="1" fill="#16162A"/>
-          <rect x="8" y="6" width="16" height="2" fill="#B44CFF" opacity="0.3"/>
-          <rect x="10" y="10" width="4" height="3" fill="#FF3CAC"/>
-          <rect x="18" y="10" width="4" height="3" fill="#FF3CAC"/>
-          <rect x="14" y="15" width="4" height="1" fill="#45F3E2" opacity="0.6"/>
-          <rect x="11" y="18" width="10" height="8" rx="1" fill="#16162A"/>
-          <rect x="11" y="18" width="10" height="1" fill="#45F3E2" opacity="0.3"/>
-          <rect x="13" y="21" width="2" height="2" fill="#45F3E2" opacity="0.7"/>
-          <rect x="17" y="21" width="2" height="2" fill="#45F3E2" opacity="0.7"/>
-          <rect x="6" y="19" width="2" height="4" fill="#B44CFF" opacity="0.5"/>
-          <rect x="24" y="19" width="2" height="4" fill="#B44CFF" opacity="0.5"/>
-          <rect x="12" y="27" width="3" height="2" fill="#16162A"/>
-          <rect x="17" y="27" width="3" height="2" fill="#16162A"/>
-        </svg>
-        <div class="buddy-menu" id="buddyMenu" role="menu" aria-hidden="true">
-          <a class="buddy-menu-item" href="./works.html" role="menuitem">查看作品 →</a>
-          <a class="buddy-menu-item" href="./terminal.html" role="menuitem">&gt;_ 进入终端</a>
-          <button class="buddy-menu-close" type="button" aria-label="关闭菜单">×</button>
-        </div>
-      </div>
 
       <section id="featured" class="section works-section">
         <div class="section-heading">
@@ -99,7 +69,7 @@
       </section>
 
       <section id="about" class="section about-section reveal">
-        <div>
+        <div class="section-heading">
           <p class="eyebrow">关于</p>
           <h2>关于我</h2>
         </div>
@@ -121,14 +91,11 @@
       </section>
 
       <section id="contact" class="section contact-section reveal">
-        <div>
+        <div class="section-heading">
           <p class="eyebrow">联系</p>
           <h2>联系与简历</h2>
         </div>
-        <div class="contact-panel">
-          <a href="mailto:yourname@example.com">yourname@example.com</a>
-          <a href="#" aria-label="Bilibili 或 ArtStation 链接">Bilibili / ArtStation / Behance</a>
-          <a href="./about.html" aria-label="前往简历页">下载简历 PDF →</a>
+        <div class="contact-panel" id="homeContactLinks" aria-label="联系方式与简历入口"></div>
         </div>
       </section>
     </main>
@@ -176,6 +143,22 @@
           e.preventDefault();
           window.location.href = "./work.html?id=" + card.dataset.slug;
         });
+
+        const contactLinks = [];
+        if (profile.email) {
+          contactLinks.push('<a href="mailto:' + profile.email + '">' + profile.email + '</a>');
+        }
+        Object.keys(profile.social).forEach(function(key) {
+          if (profile.social[key]) {
+            const labels = { bilibili: "Bilibili", artstation: "ArtStation", behance: "Behance" };
+            contactLinks.push('<a href="' + profile.social[key] + '" target="_blank" rel="noopener noreferrer">' + labels[key] + ' ↗</a>');
+          }
+        });
+        if (profile.resume) {
+          contactLinks.push('<a href="' + profile.resume + '" target="_blank" rel="noopener noreferrer">下载简历 PDF ↗</a>');
+        }
+        contactLinks.push('<a href="./about.html">联系方式与简历入口 →</a>');
+        document.getElementById("homeContactLinks").innerHTML = contactLinks.join("");
       })();
     </script>
     <script src="./script.js"></script>
