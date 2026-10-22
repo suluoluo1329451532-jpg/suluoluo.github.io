@@ -4,31 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YHN® — Digital Art Archive</title>
-    <meta
-      name="description"
-      content="YHN® Digital Art Archive — 杨蕙咛的个人数字作品集，展示 Unity、UE5、建模与视觉设计作品。"
-    />
+    <meta name="description" content="YHN® Digital Art Archive — 杨蕙咛的个人数字作品集，展示 Unity、UE5、建模与视觉设计作品。" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="bg-grid" aria-hidden="true"></div>
     <div class="scroll-progress" id="scrollProgress"></div>
+
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="回到首页">
+      <a class="brand" href="./index.html">
         <span class="brand-mark">YHN</span>
         <span>Digital Art Archive</span>
       </a>
-      <nav class="top-nav" aria-label="主导航">
-        <a href="#works">作品</a>
-        <a href="#process">流程</a>
-        <a href="#about">关于</a>
-        <a href="#contact">联系</a>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="top-nav" id="topNav" aria-label="主导航">
+        <a href="./index.html" class="is-active">Home</a>
+        <a href="./works.html">Works</a>
+        <a href="./about.html">About</a>
+        <a href="./terminal.html">Terminal</a>
       </nav>
     </header>
 
@@ -50,55 +49,21 @@
             数字媒体专业学生，专注 Unity 与 UE5 游戏制作、UE5 地编、次世代场景全流程、建模与视觉海报设计。
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#works">查看作品</a>
-            <a class="button secondary" href="#contact">获取联系</a>
+            <a class="button primary" href="./works.html">查看作品</a>
+            <a class="button secondary" href="./about.html">关于我</a>
+            <a class="button secondary" href="./terminal.html">&gt;_ Terminal</a>
           </div>
         </div>
       </section>
 
-      <section id="works" class="section works-section">
+      <section id="featured" class="section works-section">
         <div class="section-heading">
-          <p class="eyebrow">Selected Works</p>
+          <p class="eyebrow">Featured Works</p>
           <h2>精选作品</h2>
         </div>
-        <div class="filter-bar" role="tablist" aria-label="作品分类">
-          <button class="filter-button is-active" type="button" data-filter="all">全部</button>
-          <button class="filter-button" type="button" data-filter="ue5">UE5 场景</button>
-          <button class="filter-button" type="button" data-filter="unity">Unity 游戏</button>
-          <button class="filter-button" type="button" data-filter="design">平面设计</button>
-          <button class="filter-button" type="button" data-filter="modeling">三维建模</button>
-          <button class="filter-button" type="button" data-filter="animation">Blender 动画</button>
-          <button class="filter-button" type="button" data-filter="video">视频</button>
-        </div>
-        <div class="work-grid" id="workGrid" aria-live="polite"></div>
-      </section>
-
-      <section id="process" class="section process-section reveal">
-        <div class="section-heading">
-          <p class="eyebrow">Pipeline</p>
-          <h2>创作流程能力</h2>
-        </div>
-        <div class="process-list">
-          <article>
-            <span>01</span>
-            <h3>概念与参考</h3>
-            <p>整理情绪板、结构参考、材质参考，明确场景叙事和视觉层级。</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>建模与贴图</h3>
-            <p>完成高低模、UV、烘焙、PBR 材质制作，并兼顾游戏实时性能。</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>引擎整合</h3>
-            <p>在 Unity 或 UE5 中完成地编、灯光、后期、交互展示和镜头调度。</p>
-          </article>
-          <article>
-            <span>04</span>
-            <h3>展示包装</h3>
-            <p>输出渲染图、过程拆解、视频演示与海报版式，用于作品集展示。</p>
-          </article>
+        <div class="work-grid" id="featuredGrid" aria-live="polite"></div>
+        <div class="section-more">
+          <a class="button secondary" href="./works.html">查看全部作品 →</a>
         </div>
       </section>
 
@@ -120,6 +85,7 @@
             <li>Poster Design</li>
             <li>Video Editing</li>
           </ul>
+          <a class="button secondary" href="./about.html" style="margin-top:16px;">查看完整简历 →</a>
         </div>
       </section>
 
@@ -131,22 +97,56 @@
         <div class="contact-panel">
           <a href="mailto:yourname@example.com">yourname@example.com</a>
           <a href="#" aria-label="Bilibili 或 ArtStation 链接">Bilibili / ArtStation / Behance</a>
-          <a href="#" aria-label="简历下载链接">下载简历 PDF</a>
+          <a href="./about.html" aria-label="前往简历页">下载简历 PDF →</a>
         </div>
       </section>
     </main>
 
-    <dialog class="project-dialog" id="projectDialog" aria-labelledby="dialogTitle">
-      <button class="dialog-close" type="button" aria-label="关闭详情">×</button>
-      <div class="dialog-media" id="dialogMedia"></div>
-      <div class="dialog-body">
-        <p class="eyebrow" id="dialogCategory"></p>
-        <h2 id="dialogTitle"></h2>
-        <p id="dialogDescription"></p>
-        <dl class="meta-list" id="dialogMeta"></dl>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span class="footer-brand">YHN® Digital Art Archive</span>
+        <span class="footer-note">© 2026 杨蕙咛</span>
       </div>
-    </dialog>
+    </footer>
 
+    <script src="./data.js"></script>
+    <script>
+      (function() {
+        const grid = document.getElementById("featuredGrid");
+        const featured = projects.filter(function(p) { return p.featured; }).slice(0, 4);
+
+        grid.innerHTML = featured.map(function(p, i) {
+          const sizes = ["wide", "tall", "wide", "tall"];
+          const sizeClass = " work-card--" + sizes[i % sizes.length];
+          return '<article class="work-card' + sizeClass + '" tabindex="0" role="link" data-slug="' + p.slug + '">' +
+            '<span class="work-thumb">' +
+              '<img src="' + p.cover + '" alt="' + p.title + '" loading="lazy" onerror="this.style.display=\'none\'" />' +
+              '<span class="card-index">' + String(i + 1).padStart(2, "0") + '</span>' +
+            '</span>' +
+            '<span class="work-info">' +
+              '<span class="eyebrow">' + p.category + '</span>' +
+              '<h3>' + p.title + '</h3>' +
+              '<p>' + p.summary + '</p>' +
+              '<span class="work-arrow">View Project →</span>' +
+            '</span>' +
+          '</article>';
+        }).join("");
+
+        grid.addEventListener("click", function(e) {
+          const card = e.target.closest(".work-card");
+          if (!card) return;
+          window.location.href = "./work.html?id=" + card.dataset.slug;
+        });
+
+        grid.addEventListener("keydown", function(e) {
+          if (e.key !== "Enter" && e.key !== " ") return;
+          const card = e.target.closest(".work-card");
+          if (!card) return;
+          e.preventDefault();
+          window.location.href = "./work.html?id=" + card.dataset.slug;
+        });
+      })();
+    </script>
     <script src="./script.js"></script>
   </body>
 </html>

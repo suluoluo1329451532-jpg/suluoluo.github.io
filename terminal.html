@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terminal — YHN® Digital Art Archive</title>
+    <meta name="description" content="YHN® — 交互终端" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="./index.html">
+        <span class="brand-mark">YHN</span>
+        <span>Digital Art Archive</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="top-nav" id="topNav" aria-label="主导航">
+        <a href="./index.html">Home</a>
+        <a href="./works.html">Works</a>
+        <a href="./about.html">About</a>
+        <a href="./terminal.html" class="is-active">Terminal</a>
+      </nav>
+    </header>
+
+    <main class="sub-page terminal-page" id="top">
+      <div class="terminal-wrap">
+        <div class="terminal-header">
+          <span class="term-dot" style="background:#ff5f57;"></span>
+          <span class="term-dot" style="background:#febc2e;"></span>
+          <span class="term-dot" style="background:#28c840;"></span>
+          <span class="term-title">yhn@archive — bash</span>
+        </div>
+        <div class="terminal-output" id="termOutput" tabindex="0" aria-live="polite" aria-label="终端输出"></div>
+        <div class="terminal-input-row">
+          <span class="term-prompt">yhn@archive:~$</span>
+          <input type="text" id="termInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+            aria-label="输入命令" placeholder="输入 help 查看可用命令…" />
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span class="footer-brand">YHN® Digital Art Archive</span>
+        <span class="footer-note">© 2026 杨蕙咛</span>
+      </div>
+    </footer>
+
+    <script src="./data.js"></script>
+    <script>
+      (function() {
+        const output = document.getElementById("termOutput");
+        const input = document.getElementById("termInput");
+        const PROMPT = "yhn@archive:~$";
+        const history = [];
+        let historyIdx = -1;
+
+        function print(text, className) {
+          const line = document.createElement("div");
+          line.className = "term-line" + (className ? " " + className : "");
+          line.textContent = text;
+          output.appendChild(line);
+          output.scrollTop = output.scrollHeight;
+        }
+
+        function printHTML(html) {
+          const line = document.createElement("div");
+          line.className = "term-line";
+          line.innerHTML = html;
+          output.appendChild(line);
+          output.scrollTop = output.scrollHeight;
+        }
+
+        function clear() {
+          output.innerHTML = "";
+        }
+
+        const commands = {
+          help: function() {
+            printHTML("<strong>可用命令：</strong>");
+            print("  help            显示此帮助");
+            print("  about           个人简介");
+            print("  works           列出所有作品");
+            print("  skills          技能列表");
+            print("  resume          简历状态");
+            print("  contact         联系方式");
+            print("  whoami          当前身份");
+            print("  goto <page>     跳转到页面 (home|works|about)");
+            print("  open <id>       打开指定作品详情");
+            print("  clear           清空终端");
+          },
+          about: function() {
+            print(profile.name + " / " + profile.en);
+            print(profile.bio);
+          },
+          works: function() {
+            printHTML("<strong>作品列表：</strong>");
+            projects.forEach(function(p, i) {
+              print("  " + String(i + 1).padStart(2, "0") + ". " + p.title + "  [" + p.category + "]");
+            });
+            print("");
+            print("使用 open <id> 打开详情，例如: open ruins-research-lab");
+          },
+          skills: function() {
+            printHTML("<strong>技能：</strong>");
+            profile.skills.forEach(function(s) {
+              print("  • " + s);
+            });
+          },
+          resume: function() {
+            if (profile.resume) {
+              print("简历已上传，点击打开: " + profile.resume);
+              printHTML('<a href="' + profile.resume + '" target="_blank">📄 打开简历</a>');
+            } else {
+              print("简历尚未上传。请将 PDF 放到 assets/ 目录并在 data.js 中配置路径。");
+            }
+          },
+          contact: function() {
+            if (profile.email) {
+              print("Email: " + profile.email);
+            } else {
+              print("Email: 待补充");
+            }
+            var hasSocial = false;
+            Object.keys(profile.social).forEach(function(key) {
+              if (profile.social[key]) {
+                print(key.charAt(0).toUpperCase() + key.slice(1) + ": " + profile.social[key]);
+                hasSocial = true;
+              }
+            });
+            if (!hasSocial && !profile.email) {
+              print("社交链接均待补充。");
+            }
+          },
+          whoami: function() {
+            print(profile.name + " (" + profile.en + ")");
+            print(profile.title);
+          },
+          clear: function() {
+            clear();
+          },
+          goto: function(args) {
+            var pages = { home: "index.html", works: "works.html", about: "about.html" };
+            var target = args[0];
+            if (pages[target]) {
+              print("跳转到 " + target + " …");
+              setTimeout(function() { window.location.href = pages[target]; }, 500);
+            } else {
+              print("未知页面: " + (target || "(空)") + "。可用: home / works / about");
+            }
+          },
+          open: function(args) {
+            var slug = args[0];
+            if (!slug) {
+              print("用法: open <project-slug>");
+              return;
+            }
+            var p = projects.find(function(pr) { return pr.slug === slug; });
+            if (p) {
+              print("打开 " + p.title + " …");
+              setTimeout(function() { window.location.href = "./work.html?id=" + p.slug; }, 500);
+            } else {
+              print("未找到作品: " + slug);
+              print("使用 works 查看所有可用的 slug。");
+            }
+          }
+        };
+
+        function execute(raw) {
+          var trimmed = raw.trim();
+          if (!trimmed) return;
+          history.push(trimmed);
+          historyIdx = history.length;
+          print(PROMPT + " " + trimmed, "term-echo");
+
+          var parts = trimmed.split(/\s+/);
+          var cmd = parts[0].toLowerCase();
+          var args = parts.slice(1);
+
+          if (commands[cmd]) {
+            commands[cmd](args);
+          } else {
+            print("command not found: " + cmd + " — 输入 help 查看可用命令。", "term-error");
+          }
+          print("");
+        }
+
+        input.addEventListener("keydown", function(e) {
+          if (e.key === "Enter") {
+            execute(input.value);
+            input.value = "";
+          } else if (e.key === "ArrowUp") {
+            if (historyIdx > 0) {
+              historyIdx--;
+              input.value = history[historyIdx] || "";
+            }
+            e.preventDefault();
+          } else if (e.key === "ArrowDown") {
+            if (historyIdx < history.length - 1) {
+              historyIdx++;
+              input.value = history[historyIdx] || "";
+            } else {
+              historyIdx = history.length;
+              input.value = "";
+            }
+            e.preventDefault();
+          }
+        });
+
+        document.querySelector(".terminal-wrap").addEventListener("click", function() {
+          input.focus();
+        });
+
+        print("YHN® Digital Art Archive [v0.1.0]");
+        print("输入 help 查看可用命令。");
+        print("");
+        input.focus();
+      })();
+    </script>
+    <script src="./script.js"></script>
+  </body>
+</html>

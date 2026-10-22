@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project — YHN® Digital Art Archive</title>
+    <meta name="description" content="YHN® Digital Art Archive — 作品详情" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <header class="site-header">
+      <a class="brand" href="./index.html">
+        <span class="brand-mark">YHN</span>
+        <span>Digital Art Archive</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="top-nav" id="topNav" aria-label="主导航">
+        <a href="./index.html">Home</a>
+        <a href="./works.html">Works</a>
+        <a href="./about.html">About</a>
+        <a href="./terminal.html">Terminal</a>
+      </nav>
+    </header>
+
+    <main class="sub-page" id="top">
+      <div id="projectNotFound" style="display:none;padding:140px 20px;text-align:center;">
+        <p class="eyebrow">404</p>
+        <h2>未找到该作品</h2>
+        <p style="margin:16px 0;color:var(--muted);">请求的项目不存在或已被移除。</p>
+        <a class="button secondary" href="./works.html">返回作品集</a>
+      </div>
+
+      <article id="projectDetail" style="display:none">
+        <section class="detail-hero">
+          <div class="detail-hero-media">
+            <img id="detailCover" src="" alt="" />
+          </div>
+          <div class="detail-hero-content">
+            <p class="eyebrow" id="detailCategory"></p>
+            <h1 id="detailTitle"></h1>
+            <p class="detail-summary" id="detailSummary"></p>
+            <dl class="detail-meta" id="detailMeta"></dl>
+          </div>
+        </section>
+
+        <section class="section detail-section">
+          <div id="detailModules"></div>
+        </section>
+
+        <section class="section detail-links" id="detailLinksSection" style="display:none">
+          <h2>外部链接</h2>
+          <div class="contact-panel" id="detailLinks"></div>
+        </section>
+
+        <section class="section detail-nav">
+          <a class="button secondary" href="./works.html">← 返回作品集</a>
+          <div id="adjacentNav"></div>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span class="footer-brand">YHN® Digital Art Archive</span>
+        <span class="footer-note">© 2026 杨蕙咛</span>
+      </div>
+    </footer>
+
+    <script src="./data.js"></script>
+    <script>
+      (function() {
+        const params = new URLSearchParams(window.location.search);
+        const slug = params.get("id");
+        const project = projects.find(p => p.slug === slug);
+
+        const notFound = document.getElementById("projectNotFound");
+        const detail = document.getElementById("projectDetail");
+
+        if (!project) {
+          notFound.style.display = "";
+          document.title = "404 — YHN®";
+          return;
+        }
+
+        notFound.style.display = "none";
+        detail.style.display = "";
+
+        document.title = project.title + " — YHN® Digital Art Archive";
+
+        document.getElementById("detailCategory").textContent = project.category;
+        document.getElementById("detailTitle").textContent = project.title;
+        document.getElementById("detailSummary").textContent = project.summary;
+
+        const coverImg = document.getElementById("detailCover");
+        coverImg.src = project.cover;
+        coverImg.alt = project.title;
+        coverImg.onerror = function() { this.style.display = "none"; };
+
+        const metaEl = document.getElementById("detailMeta");
+        let metaHtml = "";
+        if (project.year) metaHtml += "<div><dt>年份</dt><dd>" + project.year + "</dd></div>";
+        if (project.tools && project.tools.length) metaHtml += "<div><dt>工具</dt><dd>" + project.tools.join(" / ") + "</dd></div>";
+        if (project.role) metaHtml += "<div><dt>职责</dt><dd>" + project.role + "</dd></div>";
+        if (project.status) metaHtml += "<div><dt>状态</dt><dd>" + project.status + "</dd></div>";
+        metaEl.innerHTML = metaHtml || "<div><dt>信息</dt><dd>待补充</dd></div>";
+
+        const modulesEl = document.getElementById("detailModules");
+        let modulesHtml = "";
+
+        if (project.media && project.media.length) {
+          modulesHtml += '<h2>作品展示</h2><div class="detail-gallery">';
+          project.media.forEach(m => {
+            if (m.type === "image") {
+              modulesHtml += '<figure><img src="' + m.src + '" alt="' + (m.alt || project.title) + '" loading="lazy" onerror="this.parentElement.style.display=\'none\'" />';
+              if (m.caption) modulesHtml += '<figcaption>' + m.caption + '</figcaption>';
+              modulesHtml += '</figure>';
+            } else if (m.type === "video" && m.src) {
+              modulesHtml += '<figure><video src="' + m.src + '" controls poster="' + project.cover + '" /></figure>';
+            }
+          });
+          modulesHtml += '</div>';
+        }
+
+        modulesEl.innerHTML = modulesHtml || '<p class="detail-empty">详细内容待补充。</p>';
+
+        const linksSection = document.getElementById("detailLinksSection");
+        const linksEl = document.getElementById("detailLinks");
+        if (project.links && project.links.length) {
+          linksSection.style.display = "";
+          linksEl.innerHTML = project.links.map(l =>
+            '<a href="' + l.url + '" target="_blank" rel="noopener noreferrer">' + l.label + ' ↗</a>'
+          ).join("");
+        }
+
+        const idx = projects.findIndex(p => p.slug === slug);
+        const prev = projects[idx - 1];
+        const next = projects[idx + 1];
+        const adjEl = document.getElementById("adjacentNav");
+        let adjHtml = "";
+        if (prev) adjHtml += '<a class="button secondary" href="./work.html?id=' + prev.slug + '">← ' + prev.title + '</a>';
+        if (next) adjHtml += '<a class="button secondary" href="./work.html?id=' + next.slug + '">' + next.title + ' →</a>';
+        adjEl.innerHTML = adjHtml;
+      })();
+    </script>
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Works — YHN® Digital Art Archive</title>
+    <meta name="description" content="YHN® 数字媒体作品集 — 完整作品列表" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <header class="site-header">
+      <a class="brand" href="./index.html">
+        <span class="brand-mark">YHN</span>
+        <span>Digital Art Archive</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="top-nav" id="topNav" aria-label="主导航">
+        <a href="./index.html">Home</a>
+        <a href="./works.html" class="is-active">Works</a>
+        <a href="./about.html">About</a>
+        <a href="./terminal.html">Terminal</a>
+      </nav>
+    </header>
+
+    <main class="sub-page" id="top">
+      <section class="page-hero">
+        <p class="eyebrow">All Works / Portfolio</p>
+        <h1>作品集</h1>
+      </section>
+
+      <section class="section works-section">
+        <div class="filter-bar" id="filterBar" role="tablist" aria-label="作品分类筛选"></div>
+        <div class="work-grid" id="workGrid" aria-live="polite"></div>
+        <div class="empty-state" id="emptyState" style="display:none">
+          <p>该分类暂无作品。</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span class="footer-brand">YHN® Digital Art Archive</span>
+        <span class="footer-note">© 2026 杨蕙咛</span>
+      </div>
+    </footer>
+
+    <script src="./data.js"></script>
+    <script>
+      (function() {
+        const grid = document.getElementById("workGrid");
+        const filterBar = document.getElementById("filterBar");
+        const emptyState = document.getElementById("emptyState");
+
+        function renderFilters() {
+          filterBar.innerHTML = categories.map((cat, i) =>
+            `<button class="filter-button${i === 0 ? " is-active" : ""}" type="button" data-filter="${cat.key}">${cat.label}</button>`
+          ).join("");
+        }
+
+        function renderGrid(filter) {
+          const list = filter === "all" ? projects : projects.filter(p => p.filter === filter || p.category.toLowerCase().includes(filter));
+          emptyState.style.display = list.length === 0 ? "" : "none";
+          grid.innerHTML = list.map((p, i) => {
+            const sizes = ["feature", "wide", "tall", "wide", "tall", "wide"];
+            const sizeClass = " work-card--" + sizes[i % sizes.length];
+            return '<article class="work-card' + sizeClass + '" tabindex="0" role="link" data-slug="' + p.slug + '">' +
+              '<span class="work-thumb">' +
+                '<img src="' + p.cover + '" alt="' + p.title + '" loading="lazy" onerror="this.style.display=\'none\'" />' +
+                '<span class="card-index">' + String(i + 1).padStart(2, "0") + '</span>' +
+              '</span>' +
+              '<span class="work-info">' +
+                '<span class="eyebrow">' + p.category + '</span>' +
+                '<h3>' + p.title + '</h3>' +
+                '<p>' + p.summary + '</p>' +
+                '<span class="work-arrow">View Project →</span>' +
+              '</span>' +
+            '</article>';
+          }).join("");
+        }
+
+        filterBar.addEventListener("click", function(e) {
+          const btn = e.target.closest(".filter-button");
+          if (!btn) return;
+          filterBar.querySelectorAll(".filter-button").forEach(b => b.classList.remove("is-active"));
+          btn.classList.add("is-active");
+          renderGrid(btn.dataset.filter);
+        });
+
+        grid.addEventListener("click", function(e) {
+          const card = e.target.closest(".work-card");
+          if (!card) return;
+          window.location.href = "./work.html?id=" + card.dataset.slug;
+        });
+
+        grid.addEventListener("keydown", function(e) {
+          if (e.key !== "Enter" && e.key !== " ") return;
+          const card = e.target.closest(".work-card");
+          if (!card) return;
+          e.preventDefault();
+          window.location.href = "./work.html?id=" + card.dataset.slug;
+        });
+
+        renderFilters();
+        renderGrid("all");
+      })();
+    </script>
+    <script src="./script.js"></script>
+  </body>
+</html>
