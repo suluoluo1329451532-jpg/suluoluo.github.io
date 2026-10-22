@@ -1,44 +1,47 @@
 :root {
-  --bg: #101113;
-  --bg-elevated: #141517;
-  --surface: #1B1D21;
-  --surface-elevated: #22242A;
-  --surface-hover: #282B32;
-  --text: #F0EFE8;
-  --chrome: #D7D9E0;
-  --chrome-dim: #A8ACB8;
-  --chrome-bright: #F2F4F8;
-  --iridescent: #B8A9FF;
-  --iridescent-dim: rgba(184, 169, 255, 0.12);
-  --muted: #9296A0;
-  --dim: #5A5E68;
-  --line: rgba(240, 239, 232, 0.06);
-  --border: rgba(240, 239, 232, 0.1);
-  --border-chrome: rgba(215, 217, 224, 0.18);
-  --accent: #D7FF62;
-  --accent-dim: rgba(215, 255, 98, 0.08);
+  --bg: #080810;
+  --bg-elevated: #0D0D18;
+  --surface: #11111F;
+  --surface-elevated: #16162A;
+  --surface-hover: #1C1C30;
+  --text: #E0E0EA;
+  --chrome: #C8C8E0;
+  --chrome-dim: #8888A8;
+  --chrome-bright: #E8E8F8;
+  --iridescent: #B44CFF;
+  --iridescent-dim: rgba(180, 76, 255, 0.12);
+  --muted: #8888A0;
+  --text-muted: var(--muted);
+  --cyan: #45F3E2;
+  --cyan-dim: rgba(69, 243, 226, 0.08);
+  --dim: #504868;
+  --line: rgba(120, 100, 180, 0.06);
+  --border: rgba(120, 100, 180, 0.12);
+  --border-chrome: rgba(180, 76, 255, 0.18);
+  --accent: #FF3CAC;
+  --accent-dim: rgba(255, 60, 172, 0.08);
   --chrome-gradient: linear-gradient(
     180deg,
-    #f5f6f8 0%,
-    #c8ccd4 12%,
-    #e8eaf0 28%,
-    #9a9eab 48%,
-    #d7d9e0 62%,
-    #f0f2f5 78%,
-    #b0b4bd 100%
+    #E8E8F8 0%,
+    #8888C8 12%,
+    #C8C8E8 28%,
+    #6868A8 48%,
+    #C8C8E0 62%,
+    #E0E0F0 78%,
+    #8888B0 100%
   );
   --chrome-border: linear-gradient(
     135deg,
-    rgba(215,217,224,0.25) 0%,
-    rgba(215,217,224,0.05) 30%,
-    rgba(215,217,224,0.15) 60%,
-    rgba(215,217,224,0.08) 100%
+    rgba(200,200,224,0.25) 0%,
+    rgba(180,76,255,0.08) 30%,
+    rgba(200,200,224,0.15) 60%,
+    rgba(69,243,226,0.05) 100%
   );
   --iridescent-gradient: linear-gradient(
     135deg,
-    rgba(184,169,255,0.2) 0%,
-    rgba(215,255,98,0.06) 40%,
-    rgba(184,169,255,0.15) 100%
+    rgba(180,76,255,0.2) 0%,
+    rgba(255,60,172,0.08) 40%,
+    rgba(69,243,226,0.1) 100%
   );
   --font-display: "Space Grotesk", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-mono: "JetBrains Mono", "Space Grotesk", monospace;
@@ -72,9 +75,9 @@ img, video { display: block; max-width: 100%; }
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(215,217,224,0.04) 0%, transparent 70%),
-    repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(215,217,224,0.015) 80px),
-    repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(215,217,224,0.015) 80px);
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120,100,200,0.04) 0%, transparent 70%),
+    repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(120,100,200,0.015) 80px),
+    repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(120,100,200,0.015) 80px);
 }
 
 .scroll-progress {
@@ -96,7 +99,7 @@ img, video { display: block; max-width: 100%; }
   justify-content: space-between;
   min-height: 64px;
   padding: 0 clamp(20px, 5vw, 64px);
-  background: rgba(16, 17, 19, 0.94);
+  background: rgba(8, 8, 16, 0.94);
   border-bottom: 1px solid var(--border);
 }
 
@@ -189,8 +192,8 @@ main { position: relative; z-index: 1; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(16,17,19,0.7) 0%, rgba(16,17,19,0.4) 50%, var(--bg) 100%),
-    radial-gradient(ellipse 60% 50% at 70% 40%, rgba(184,169,255,0.05) 0%, transparent 70%);
+    linear-gradient(180deg, rgba(8,8,16,0.7) 0%, rgba(8,8,16,0.4) 50%, var(--bg) 100%),
+    radial-gradient(ellipse 60% 50% at 70% 40%, rgba(180,76,255,0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -206,7 +209,7 @@ main { position: relative; z-index: 1; }
   width: 140px; height: 140px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, var(--chrome-bright) 0%, var(--chrome) 25%, #8a8e98 60%, #5a5e68 100%);
-  box-shadow: inset -8px -8px 16px rgba(0,0,0,0.4), 0 4px 24px rgba(215,217,224,0.1);
+  box-shadow: inset -8px -8px 16px rgba(0,0,0,0.4), 0 4px 24px rgba(200,200,224,0.1);
   opacity: 0.5;
   animation: orb-float 8s ease-in-out infinite alternate;
 }
@@ -265,7 +268,7 @@ h1 {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 40px rgba(215,217,224,0.15);
+  text-shadow: 0 0 40px rgba(255,60,172,0.15);
 }
 
 .hero-sub {
@@ -334,7 +337,7 @@ h3 {
 .button.primary:hover {
   background: transparent;
   color: var(--accent);
-  box-shadow: 0 0 16px rgba(215, 255, 98, 0.15);
+  box-shadow: 0 0 16px rgba(255, 60, 172, 0.2);
   transform: translateY(-1px);
 }
 
@@ -423,7 +426,7 @@ h3 {
 .work-card:hover {
   border-color: var(--border-chrome);
   transform: translateY(-3px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(215,217,224,0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(69,243,226,0.05);
 }
 
 .work-card--feature {
@@ -474,7 +477,7 @@ h3 {
   position: absolute;
   top: 8px; left: 8px;
   padding: 1px 6px;
-  background: rgba(16, 17, 19, 0.85);
+  background: rgba(8, 8, 16, 0.85);
   color: var(--chrome-dim);
   font-family: var(--font-mono);
   font-size: 0.58rem;
@@ -487,7 +490,7 @@ h3 {
   position: absolute;
   top: 8px; right: 8px;
   padding: 1px 6px;
-  background: rgba(16, 17, 19, 0.85);
+  background: rgba(8, 8, 16, 0.85);
   color: var(--muted);
   font-family: var(--font-mono);
   font-size: 0.55rem;
@@ -686,7 +689,7 @@ h3 {
 }
 
 .project-dialog::backdrop {
-  background: rgba(16, 17, 19, 0.9);
+  background: rgba(8, 8, 16, 0.9);
 }
 
 .project-dialog[open] {
@@ -707,7 +710,7 @@ h3 {
   place-items: center;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: rgba(16, 17, 19, 0.8);
+  background: rgba(8, 8, 16, 0.8);
   color: var(--text);
   font-size: 1rem;
   transition: all 0.2s var(--ease-smooth);
@@ -1030,7 +1033,7 @@ h3 {
     align-items: flex-start;
     gap: 0;
     padding: 8px 16px 16px;
-    background: rgba(16, 17, 19, 0.98);
+    background: rgba(8, 8, 16, 0.98);
     border-bottom: 1px solid var(--border);
     display: none;
   }
