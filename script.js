@@ -71,6 +71,52 @@ function restoreWorksFilter() {
   try { return sessionStorage.getItem(FILTER_KEY) || "all"; } catch (e) { return "all"; }
 }
 
+function escapeHtml(value) {
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function renderWorkCard(project, index, sizeClass) {
+  const title = escapeHtml(project.title);
+  const category = escapeHtml(project.category);
+  const slug = escapeHtml(project.slug);
+  const summary = project.summary ? '<p>' + escapeHtml(project.summary) + '</p>' : "";
+  const year = project.year ? '<span class="work-year">' + escapeHtml(project.year) + '</span>' : "";
+  const tools = (project.tools && project.tools.length)
+    ? '<span class="work-tools">' + project.tools.map(tool => '<span>' + escapeHtml(tool) + '</span>').join("") + '</span>'
+    : "";
+
+  let thumbHtml;
+  if (project.cover && project.coverPlaceholder !== true) {
+    thumbHtml = '<span class="work-thumb">' +
+      '<img src="' + escapeHtml(project.cover) + '" alt="' + title + ' 作品封面" loading="lazy" ' +
+        'onerror="this.closest(\'.work-thumb\').classList.add(\'is-broken\'); this.remove();" />' +
+      '<span class="card-index">' + String(index + 1).padStart(2, "0") + '</span>' +
+    '</span>';
+  } else {
+    thumbHtml = '<span class="work-thumb" data-placeholder="true">' +
+      '<span class="placeholder-tag">待补充</span>' +
+      '<span class="placeholder-shape" aria-hidden="true"></span>' +
+      '<span class="card-index">' + String(index + 1).padStart(2, "0") + '</span>' +
+    '</span>';
+  }
+
+  return '<article class="work-card' + (sizeClass ? " " + sizeClass : "") + '" tabindex="0" role="link" data-slug="' + slug + '">' +
+    thumbHtml +
+    '<span class="work-info">' +
+      '<span class="work-meta"><span class="eyebrow">' + category + '</span>' + year + '</span>' +
+      '<h3>' + title + '</h3>' +
+      summary +
+      tools +
+      '<span class="work-arrow">查看项目 →</span>' +
+    '</span>' +
+  '</article>';
+}
+
 /* ---- Mobile navigation toggle ---- */
 (function() {
   var toggle = document.getElementById("navToggle");

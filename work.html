@@ -27,7 +27,7 @@
       <nav class="top-nav" id="topNav" aria-label="主导航">
         <a href="./index.html"><span class="nav-num">01</span>首页</a>
         <a href="./works.html" class="is-active" aria-current="page"><span class="nav-num">02</span>作品集</a>
-        <a href="./about.html"><span class="nav-num">03</span>关于</a>
+        <a href="./about.html"><span class="nav-num">03</span>关于我</a>
         <a href="./terminal.html"><span class="nav-num">04</span>终端</a>
       </nav>
     </header>
@@ -48,7 +48,7 @@
           <div class="detail-hero-content">
             <p class="eyebrow" id="detailCategory"></p>
             <h1 id="detailTitle"></h1>
-            <p class="detail-summary" id="detailSummary"></p>
+            <p class="detail-summary" id="detailSummary" style="display:none"></p>
             <dl class="detail-meta" id="detailMeta"></dl>
           </div>
         </section>
@@ -98,7 +98,11 @@
         document.title = project.title + " — YHN® Digital Art Archive";
         document.getElementById("detailCategory").textContent = project.category;
         document.getElementById("detailTitle").textContent = project.title;
-        document.getElementById("detailSummary").textContent = project.summary;
+        const summaryEl = document.getElementById("detailSummary");
+        if (project.summary) {
+          summaryEl.textContent = project.summary;
+          summaryEl.style.display = "";
+        }
 
         const coverImg = document.getElementById("detailCover");
         coverImg.src = project.cover;
@@ -111,7 +115,7 @@
         if (project.tools && project.tools.length) metaHtml += "<div><dt>工具</dt><dd>" + project.tools.join(" / ") + "</dd></div>";
         if (project.role) metaHtml += "<div><dt>职责</dt><dd>" + project.role + "</dd></div>";
         if (project.status) metaHtml += "<div><dt>状态</dt><dd>" + project.status + "</dd></div>";
-        metaEl.innerHTML = metaHtml || "<div><dt>信息</dt><dd>待补充</dd></div>";
+        metaEl.innerHTML = metaHtml || "<div><dt>信息</dt><dd>项目资料正在整理中</dd></div>";
 
         const modulesEl = document.getElementById("detailModules");
         let modulesHtml = "";
@@ -130,7 +134,7 @@
           modulesHtml += '</div>';
         }
 
-        modulesEl.innerHTML = modulesHtml || '<p class="detail-empty">详细内容待补充。</p>';
+        modulesEl.innerHTML = modulesHtml || '<p class="detail-empty">作品展示内容正在整理中。</p>';
 
         const linksSection = document.getElementById("detailLinksSection");
         const linksEl = document.getElementById("detailLinks");

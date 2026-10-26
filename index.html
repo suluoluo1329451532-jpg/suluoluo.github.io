@@ -27,12 +27,12 @@
       <nav class="top-nav" id="topNav" aria-label="主导航">
         <a href="./index.html" class="is-active" aria-current="page"><span class="nav-num">01</span>首页</a>
         <a href="./works.html"><span class="nav-num">02</span>作品集</a>
-        <a href="./about.html"><span class="nav-num">03</span>关于</a>
+        <a href="./about.html"><span class="nav-num">03</span>关于我</a>
         <a href="./terminal.html"><span class="nav-num">04</span>终端</a>
       </nav>
     </header>
 
-    <main id="top">
+    <main id="top" class="home-main">
       <section class="hero">
         <div class="hero-content">
           <p class="eyebrow">YHN® / Digital Art Archive</p>
@@ -74,6 +74,8 @@
         </div>
       </section>
 
+      <div class="section-divider" aria-hidden="true"></div>
+
 
       <section id="featured" class="section works-section">
         <div class="section-heading">
@@ -86,6 +88,8 @@
           <a class="button secondary" href="./works.html">查看全部作品 →</a>
         </div>
       </section>
+
+      <div class="section-divider" aria-hidden="true"></div>
 
       <section id="about" class="section about-section reveal">
         <div class="section-heading">
@@ -110,6 +114,8 @@
         </div>
       </section>
 
+      <div class="section-divider" aria-hidden="true"></div>
+
       <section id="contact" class="section contact-section reveal">
         <div class="section-heading">
           <p class="eyebrow">联系</p>
@@ -120,7 +126,7 @@
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer home-footer">
       <div class="footer-inner">
         <span class="footer-brand">YHN® Digital Art Archive</span>
         <span class="footer-note">© 2026 杨蕙咛</span>
@@ -128,6 +134,7 @@
     </footer>
 
     <script src="./data.js"></script>
+    <script src="./script.js"></script>
     <script>
       (function() {
         const grid = document.getElementById("featuredGrid");
@@ -136,20 +143,7 @@
         grid.innerHTML = featured.map(function(p, i) {
           const sizes = ["feature", "wide", "tall", "feature"];
           const sizeClass = " work-card--" + sizes[i % sizes.length];
-          return '<article class="work-card' + sizeClass + '" tabindex="0" role="link" data-slug="' + p.slug + '">' +
-            '<span class="work-thumb" data-placeholder="true">' +
-              '<span class="placeholder-tag">TEMP</span>' +
-              '<span class="placeholder-shape" aria-hidden="true"></span>' +
-              '<span class="card-index">' + String(i + 1).padStart(2, "0") + '</span>' +
-            '</span>' +
-            '<span class="work-info">' +
-              '<span class="eyebrow">' + p.category + '</span>' +
-              '<h3>' + p.title + '</h3>' +
-              '<p>' + p.summary + '</p>' +
-                ((p.tools && p.tools.length) ? '<span class="work-tools">' + p.tools.slice(0, 3).map(function(t) { return '<span>' + t + '</span>'; }).join('') + '</span>' : '') +
-              '<span class="work-arrow">查看项目 →</span>' +
-            '</span>' +
-          '</article>';
+          return renderWorkCard(p, i, sizeClass);
         }).join("");
 
         grid.addEventListener("click", function(e) {
@@ -183,6 +177,5 @@
         document.getElementById("homeContactLinks").innerHTML = contactLinks.join("");
       })();
     </script>
-    <script src="./script.js"></script>
   </body>
 </html>

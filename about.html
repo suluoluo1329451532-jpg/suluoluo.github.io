@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>关于 — YHN® Digital Art Archive</title>
+    <title>关于我 — YHN® Digital Art Archive</title>
     <meta name="description" content="YHN® — 个人介绍与简历" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,7 +27,7 @@
       <nav class="top-nav" id="topNav" aria-label="主导航">
         <a href="./index.html"><span class="nav-num">01</span>首页</a>
         <a href="./works.html"><span class="nav-num">02</span>作品集</a>
-        <a href="./about.html" class="is-active" aria-current="page"><span class="nav-num">03</span>关于</a>
+        <a href="./about.html" class="is-active" aria-current="page"><span class="nav-num">03</span>关于我</a>
         <a href="./terminal.html"><span class="nav-num">04</span>终端</a>
       </nav>
     </header>
@@ -39,20 +39,98 @@
       </section>
 
       <section class="section about-section">
-        <div>
-          <p class="eyebrow">Bio</p>
-        </div>
+        <aside class="profile-file" aria-labelledby="profileFileTitle">
+          <p class="profile-file-tag">PROFILE FILE / 001</p>
+          <p class="profile-file-brand">YHN®</p>
+          <h2 id="profileFileTitle" class="profile-file-title">数字媒体创作者</h2>
+          <p class="profile-file-en">DIGITAL MEDIA CREATOR</p>
+          <ul class="profile-file-list">
+            <li>
+              <span>游戏开发</span>
+              <span>UNITY &amp; UNREAL ENGINE 5</span>
+            </li>
+            <li>
+              <span>环境与场景设计</span>
+              <span>ENVIRONMENT ART</span>
+            </li>
+            <li>
+              <span>三维与数字视觉</span>
+              <span>3D &amp; VISUAL DESIGN</span>
+            </li>
+          </ul>
+          <p class="profile-file-code">FILE YHN-001 / DIGITAL MEDIA</p>
+        </aside>
         <div class="about-copy">
-          <p id="aboutBio"></p>
-          <p class="detail-summary" id="aboutTitle"></p>
-          <ul class="skill-tags" id="aboutSkills" aria-label="技能标签"></ul>
+          <article class="about-module">
+            <p class="about-module-label">INTRODUCTION / 关于我的创作方向</p>
+            <p>
+              我是一名数字媒体专业的创作者，关注游戏开发、UE5 环境设计与三维视觉表达，希望将技术实现与美术表现结合，在游戏场景、三维资产和数字视觉等方向持续探索。
+            </p>
+          </article>
+          <article class="about-module">
+            <p class="about-module-label">PRACTICE / 项目与实践</p>
+            <p>
+              在项目实践与实习中，我接触过 Unity 与 UE5 项目开发、三维建模、材质制作、渲染展示及动画制作，也有平面视觉设计方面的实践。我希望通过持续的项目积累，将自己的技术能力与美术表现力落实到具体作品中。
+            </p>
+          </article>
+          <div class="skill-groups" aria-label="技能方向分组">
+            <section class="skill-group">
+              <h3>GAME DEVELOPMENT / 游戏开发</h3>
+              <ul class="skill-tags">
+                <li>Unity</li>
+                <li>Unreal Engine 5</li>
+              </ul>
+            </section>
+            <section class="skill-group">
+              <h3>ENVIRONMENT &amp; 3D / 环境与三维</h3>
+              <ul class="skill-tags">
+                <li>UE5 地编</li>
+                <li>Blender</li>
+              </ul>
+            </section>
+            <section class="skill-group">
+              <h3>MATERIAL &amp; RENDERING / 材质与渲染</h3>
+              <ul class="skill-tags">
+                <li>Substance Painter</li>
+                <li>PBR Workflow</li>
+                <li>渲染</li>
+              </ul>
+            </section>
+            <section class="skill-group">
+              <h3>VISUAL DESIGN / 视觉设计</h3>
+              <ul class="skill-tags">
+                <li>Photoshop</li>
+                <li>视频剪辑</li>
+              </ul>
+            </section>
+          </div>
         </div>
       </section>
 
       <section class="section about-block">
         <h2>教育背景</h2>
-        <div class="about-timeline" id="aboutEducation">
-          <div class="about-placeholder"><span class="placeholder-tag">EMPTY</span><span>此模块暂无数据，待后续补充。</span></div>
+        <div class="education-card" id="aboutEducation">
+          <div class="education-card-meta">
+            <p class="education-label">EDUCATION / ACADEMIC PROFILE</p>
+            <p class="education-code">FILE / EDU-001</p>
+          </div>
+          <div class="education-primary">
+            <div class="education-school-row">
+              <span class="placeholder-tag">PENDING</span>
+              <h3 class="education-school">学校名称待补充</h3>
+            </div>
+            <p class="education-major">专业 / 虚拟现实技术应用</p>
+          </div>
+          <dl class="education-performance">
+            <div>
+              <dt>专业排名</dt>
+              <dd class="education-rank">专业第一</dd>
+            </div>
+            <div>
+              <dt>GPA</dt>
+              <dd class="education-gpa">4.50<em>/ 5.0</em></dd>
+            </div>
+          </dl>
         </div>
       </section>
 
@@ -96,11 +174,6 @@
     <script src="./data.js"></script>
     <script>
       (function() {
-        document.getElementById("aboutBio").textContent = profile.bio;
-        document.getElementById("aboutTitle").textContent = "求职方向：" + profile.title;
-        document.getElementById("aboutSkills").innerHTML =
-          profile.skills.map(s => "<li>" + s + "</li>").join("");
-
         if (profile.resume) {
           const resumePanel = document.getElementById("resumePanel");
           resumePanel.innerHTML = "";
