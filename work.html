@@ -42,8 +42,20 @@
 
       <article id="projectDetail" style="display:none">
         <section class="detail-hero">
+          <div class="detail-hero-top">
+            <a class="button secondary detail-back" href="./works.html">← 返回作品集</a>
+            <p class="detail-code" id="detailCode"></p>
+          </div>
           <div class="detail-hero-media">
-            <img id="detailCover" src="" alt="" />
+            <div class="detail-carousel" id="detailCarousel" role="group" aria-roledescription="carousel" aria-label="作品媒体轮播">
+              <div class="detail-carousel-stage">
+                <div class="detail-carousel-track" id="detailCarouselTrack"></div>
+              </div>
+              <button class="detail-carousel-button detail-carousel-prev" id="detailCarouselPrev" type="button" aria-label="上一个媒体">←</button>
+              <button class="detail-carousel-button detail-carousel-next" id="detailCarouselNext" type="button" aria-label="下一个媒体">→</button>
+              <div class="detail-carousel-dots" id="detailCarouselDots"></div>
+              <p class="detail-carousel-status" id="detailCarouselStatus" aria-live="polite"></p>
+            </div>
           </div>
           <div class="detail-hero-content">
             <p class="eyebrow" id="detailCategory"></p>
@@ -96,18 +108,161 @@
         detail.style.display = "";
 
         document.title = project.title + " — YHN® Digital Art Archive";
+        document.getElementById("detailCode").textContent = project.code || project.category;
         document.getElementById("detailCategory").textContent = project.category;
         document.getElementById("detailTitle").textContent = project.title;
         const summaryEl = document.getElementById("detailSummary");
-        if (project.summary) {
+        if (project.summary && !(project.modules && project.modules.overview)) {
           summaryEl.textContent = project.summary;
           summaryEl.style.display = "";
         }
 
-        const coverImg = document.getElementById("detailCover");
-        coverImg.src = project.cover;
-        coverImg.alt = project.title;
-        coverImg.onerror = function() { this.style.display = "none"; };
+        const carouselRoot = document.getElementById("detailCarousel");
+        const carouselTrack = document.getElementById("detailCarouselTrack");
+        const carouselStage = carouselTrack.parentElement;
+        const carouselDots = document.getElementById("detailCarouselDots");
+        const carouselPrev = document.getElementById("detailCarouselPrev");
+        const carouselNext = document.getElementById("detailCarouselNext");
+        const carouselStatus = document.getElementById("detailCarouselStatus");
+        carouselTrack.innerHTML = "";
+        carouselDots.innerHTML = "";
+
+        const carouselItems = [];
+        if (project.cover) {
+          carouselItems.push({ type: "image", src: project.cover, alt: project.title });
+        }
+        (project.media || []).forEach(item => {
+          if ((item.type === "image" || item.type === "video") && item.src) {
+            carouselItems.push(item);
+          }
+        });
+
+        const carouselSlides = [];
+        const carouselDotButtons = [];
+        let carouselIndex = 0;
+
+        const updateCarousel = function(nextIndex) {
+          if (!carouselSlides.length) return;
+          carouselIndex = (nextIndex + carouselSlides.length) % carouselSlides.length;
+          carouselSlides.forEach((slide, index) => {
+            const isActive = index === carouselIndex;
+            slide.classList.toggle("is-active", isActive);
+            slide.setAttribute("aria-hidden", isActive ? "false" : "true");
+            const video = slide.querySelector("video");
+            if (video && !isActive) {
+              video.pause();
+            }
+          });
+          carouselDotButtons.forEach((dot, index) => {
+            dot.classList.toggle("is-active", index === carouselIndex);
+            dot.setAttribute("aria-current", index === carouselIndex ? "true" : "false");
+          });
+          carouselStatus.textContent = String(carouselIndex + 1).padStart(2, "0") + " / " + String(carouselSlides.length).padStart(2, "0");
+        };
+
+        carouselItems.forEach((item, index) => {
+          const slide = document.createElement("div");
+          slide.className = "detail-carousel-slide";
+          slide.setAttribute("aria-hidden", index === 0 ? "false" : "true");
+          slide.setAttribute("role", "group");
+          slide.setAttribute("aria-label", "媒体 " + (index + 1));
+
+          const typeTag = document.createElement("span");
+          typeTag.className = "detail-carousel-type";
+          typeTag.textContent = item.type === "video" ? "VIDEO" : "IMAGE";
+          slide.appendChild(typeTag);
+
+          if (item.type === "video") {
+            const video = document.createElement("video");
+            video.controls = true;
+            video.preload = "metadata";
+            video.poster = project.cover;
+            video.setAttribute("playsinline", "");
+            video.setAttribute("aria-label", item.alt || project.title);
+            const source = document.createElement("source");
+            source.src = item.src;
+            source.type = "video/mp4";
+            const error = document.createElement("p");
+            error.className = "detail-media-error";
+            error.textContent = "视频加载失败，请检查网络后重试。";
+            error.hidden = true;
+            const showError = function() { error.hidden = false; };
+            video.addEventListener("error", showError);
+            source.addEventListener("error", showError);
+            video.appendChild(source);
+            slide.appendChild(video);
+          } else {
+            const image = document.createElement("img");
+            image.src = item.src;
+            image.alt = item.alt || project.title;
+            image.loading = index === 0 ? "eager" : "lazy";
+            image.addEventListener("error", function() {
+              const notice = document.createElement("p");
+              notice.className = "detail-media-error";
+              notice.textContent = "图片加载失败。";
+              slide.appendChild(notice);
+            });
+            slide.appendChild(image);
+          }
+
+          carouselTrack.appendChild(slide);
+          carouselSlides.push(slide);
+
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "detail-carousel-dot";
+          dot.setAttribute("aria-label", "跳转到第 " + (index + 1) + " 个媒体");
+          dot.addEventListener("click", function() { updateCarousel(index); });
+          carouselDots.appendChild(dot);
+          carouselDotButtons.push(dot);
+        });
+
+        if (carouselSlides.length) {
+          carouselPrev.hidden = carouselSlides.length < 2;
+          carouselNext.hidden = carouselSlides.length < 2;
+          carouselDots.hidden = carouselSlides.length < 2;
+          carouselPrev.addEventListener("click", function() { updateCarousel(carouselIndex - 1); });
+          carouselNext.addEventListener("click", function() { updateCarousel(carouselIndex + 1); });
+          carouselRoot.addEventListener("keydown", function(event) {
+            if (event.target.closest("video, input, textarea, select, [contenteditable]")) return;
+            if (event.key === "ArrowLeft") {
+              event.preventDefault();
+              updateCarousel(carouselIndex - 1);
+            }
+            if (event.key === "ArrowRight") {
+              event.preventDefault();
+              updateCarousel(carouselIndex + 1);
+            }
+          });
+
+          let swipeStartX = 0;
+          let swipeStartY = 0;
+          carouselStage.addEventListener("pointerdown", function(event) {
+            if (event.target.closest("video, button, a")) return;
+            swipeStartX = event.clientX;
+            swipeStartY = event.clientY;
+          });
+          carouselStage.addEventListener("pointerup", function(event) {
+            const deltaX = event.clientX - swipeStartX;
+            const deltaY = event.clientY - swipeStartY;
+            if (Math.abs(deltaX) < 48 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) return;
+            if (deltaX < 0) {
+              updateCarousel(carouselIndex + 1);
+            } else {
+              updateCarousel(carouselIndex - 1);
+            }
+          });
+          updateCarousel(0);
+        } else {
+          const empty = document.createElement("p");
+          empty.className = "detail-empty";
+          empty.textContent = "暂无可展示的作品媒体。";
+          carouselTrack.appendChild(empty);
+          carouselPrev.hidden = true;
+          carouselNext.hidden = true;
+          carouselDots.hidden = true;
+          carouselStatus.textContent = "";
+        }
 
         const metaEl = document.getElementById("detailMeta");
         let metaHtml = "";
@@ -118,23 +273,79 @@
         metaEl.innerHTML = metaHtml || "<div><dt>信息</dt><dd>项目资料正在整理中</dd></div>";
 
         const modulesEl = document.getElementById("detailModules");
-        let modulesHtml = "";
+        modulesEl.innerHTML = "";
 
-        if (project.media && project.media.length) {
-          modulesHtml += '<h2>作品展示</h2><div class="detail-gallery">';
-          project.media.forEach(m => {
-            if (m.type === "image") {
-              modulesHtml += '<figure><img src="' + m.src + '" alt="' + (m.alt || project.title) + '" loading="lazy" onerror="this.parentElement.style.display=\'none\'" />';
-              if (m.caption) modulesHtml += '<figcaption>' + m.caption + '</figcaption>';
-              modulesHtml += '</figure>';
-            } else if (m.type === "video" && m.src) {
-              modulesHtml += '<figure><video src="' + m.src + '" controls poster="' + project.cover + '" /></figure>';
-            }
-          });
-          modulesHtml += '</div>';
+        const appendHeading = function(parent, text) {
+          const heading = document.createElement("h2");
+          heading.textContent = text;
+          parent.appendChild(heading);
+        };
+
+        if (project.modules && project.modules.overview) {
+          const overview = project.modules.overview;
+          const overviewSection = document.createElement("section");
+          overviewSection.className = "detail-module detail-overview";
+          appendHeading(overviewSection, overview.label || "PROJECT OVERVIEW / 项目介绍");
+          if (overview.body) {
+            const text = document.createElement("p");
+            text.textContent = overview.body;
+            overviewSection.appendChild(text);
+          }
+          if (Array.isArray(overview.facts) && overview.facts.length) {
+            const facts = document.createElement("dl");
+            facts.className = "detail-facts";
+            overview.facts.forEach(fact => {
+              const item = document.createElement("div");
+              const label = document.createElement("dt");
+              label.textContent = fact.label;
+              const value = document.createElement("dd");
+              value.textContent = fact.value;
+              item.appendChild(label);
+              item.appendChild(value);
+              facts.appendChild(item);
+            });
+            overviewSection.appendChild(facts);
+          }
+          modulesEl.appendChild(overviewSection);
         }
 
-        modulesEl.innerHTML = modulesHtml || '<p class="detail-empty">作品展示内容正在整理中。</p>';
+        if (project.modules && project.modules.technical && Array.isArray(project.modules.technical.items) && project.modules.technical.items.length) {
+          const technical = project.modules.technical;
+          const technicalSection = document.createElement("section");
+          technicalSection.className = "detail-module detail-technical";
+          appendHeading(technicalSection, technical.label || "TECHNICAL BREAKDOWN / 技术说明");
+          const grid = document.createElement("div");
+          grid.className = "detail-tech-grid";
+          technical.items.forEach(item => {
+            const card = document.createElement("article");
+            card.className = "detail-tech-card";
+            const title = document.createElement("h3");
+            title.textContent = item.title;
+            card.appendChild(title);
+            if (item.body) {
+              const body = document.createElement("p");
+              body.textContent = item.body;
+              card.appendChild(body);
+            }
+            if (Array.isArray(item.tags) && item.tags.length) {
+              const tags = document.createElement("ul");
+              tags.className = "detail-tech-tags";
+              item.tags.forEach(tag => {
+                const li = document.createElement("li");
+                li.textContent = tag;
+                tags.appendChild(li);
+              });
+              card.appendChild(tags);
+            }
+            grid.appendChild(card);
+          });
+          technicalSection.appendChild(grid);
+          modulesEl.appendChild(technicalSection);
+        }
+
+        if (!modulesEl.children.length) {
+          modulesEl.innerHTML = '<p class="detail-empty">作品展示内容正在整理中。</p>';
+        }
 
         const linksSection = document.getElementById("detailLinksSection");
         const linksEl = document.getElementById("detailLinks");
