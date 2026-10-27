@@ -135,25 +135,23 @@
       </section>
 
       <section class="section about-block">
-        <h2>项目与实习经历</h2>
+        <h2>项目与实践经历</h2>
         <div class="about-timeline" id="aboutExperience">
-          <div class="about-placeholder"><span class="placeholder-tag">EMPTY</span><span>此模块暂无数据，待后续补充。</span></div>
         </div>
       </section>
 
       <section class="section about-block">
         <h2>竞赛与荣誉</h2>
         <div class="about-timeline" id="aboutAwards">
-          <div class="about-placeholder"><span class="placeholder-tag">EMPTY</span><span>此模块暂无数据，待后续补充。</span></div>
         </div>
       </section>
 
       <section class="section about-block">
         <h2>简历下载</h2>
         <div class="contact-panel" id="resumePanel">
-          <div class="about-placeholder">
-            <span class="placeholder-tag">PENDING</span>
-            <span>简历 PDF 尚未上传。</span>
+          <div class="resume-status">
+            <p class="resume-status-label">PDF STATUS / PENDING</p>
+            <p class="resume-status-note">简历 PDF 尚未上传，上传后将在此提供下载入口。</p>
           </div>
         </div>
       </section>
@@ -178,30 +176,143 @@
           const resumePanel = document.getElementById("resumePanel");
           resumePanel.innerHTML = "";
           const resumeLink = document.createElement("a");
+          resumeLink.className = "resume-download";
           resumeLink.href = profile.resume;
-          resumeLink.download = "";
-          resumeLink.textContent = "📄 下载简历 PDF";
+          resumeLink.download = "Yang-Huining-Resume.pdf";
+          resumeLink.innerHTML = '<span class="resume-download-label"><strong>DOWNLOAD RESUME / 下载简历</strong><small>完整简历 PDF</small></span>';
           resumePanel.appendChild(resumeLink);
         }
 
-        const socialLabels = {
-          bilibili: "Bilibili",
-          artstation: "ArtStation",
-          behance: "Behance"
-        };
-        const contactLinks = [];
-        if (profile.email) {
-          contactLinks.push('<a href="mailto:' + profile.email + '">' + profile.email + '</a>');
+        const experiencePanel = document.getElementById("aboutExperience");
+        if (Array.isArray(profile.experience) && profile.experience.length) {
+          experiencePanel.className = "experience-list";
+          profile.experience.forEach(function(item) {
+            const card = document.createElement("article");
+            card.className = item.featured ? "experience-card is-featured" : "experience-card";
+
+            const header = document.createElement("div");
+            header.className = "experience-header";
+            header.innerHTML = '<div class="experience-heading"><h3></h3><p class="experience-role"></p></div><div class="experience-tags"></div>';
+            header.querySelector("h3").textContent = item.title;
+            header.querySelector(".experience-role").textContent = item.role || "";
+
+            const tagList = header.querySelector(".experience-tags");
+            if (item.result) {
+              const resultTag = document.createElement("span");
+              resultTag.className = "experience-result";
+              resultTag.textContent = item.result;
+              tagList.appendChild(resultTag);
+            }
+            if (item.category) {
+              const categoryTag = document.createElement("span");
+              categoryTag.className = "experience-type";
+              categoryTag.textContent = item.category;
+              tagList.appendChild(categoryTag);
+            }
+
+            const pointList = document.createElement("ul");
+            pointList.className = "experience-points";
+            (item.points || []).slice(0, 4).forEach(function(point) {
+              const li = document.createElement("li");
+              li.textContent = point;
+              pointList.appendChild(li);
+            });
+
+            card.appendChild(header);
+            card.appendChild(pointList);
+            experiencePanel.appendChild(card);
+          });
+        } else {
+          experiencePanel.innerHTML = '<div class="about-placeholder"><span class="placeholder-tag">EMPTY</span><span>此模块暂无数据，待后续补充。</span></div>';
         }
-        Object.keys(profile.social).forEach(function(key) {
-          if (profile.social[key]) {
-            contactLinks.push('<a href="' + profile.social[key] + '" target="_blank" rel="noopener noreferrer">' + socialLabels[key] + ' ↗</a>');
+
+        const awardsPanel = document.getElementById("aboutAwards");
+        const appendAwardGroup = function(labelText, records) {
+          if (!Array.isArray(records) || !records.length) {
+            return;
           }
-        });
-        if (!contactLinks.length) {
-          contactLinks.push('<div class="about-placeholder"><span class="placeholder-tag">PENDING</span><span>真实邮箱与社交链接待补充。</span></div>');
+          const label = document.createElement("p");
+          label.className = "awards-group-label";
+          label.textContent = labelText;
+          const grid = document.createElement("div");
+          grid.className = "awards-grid";
+
+          records.forEach(function(record) {
+            const card = document.createElement("article");
+            card.className = record.featured ? "award-card is-featured" : "award-card";
+            if (record.year) {
+              const year = document.createElement("span");
+              year.className = "award-year";
+              year.textContent = record.year;
+              card.appendChild(year);
+            }
+            const title = document.createElement("h3");
+            title.textContent = record.title;
+            card.appendChild(title);
+            if (record.level) {
+              const level = document.createElement("p");
+              level.className = "award-level";
+              level.textContent = record.level;
+              card.appendChild(level);
+            }
+            if (record.amount) {
+              const amount = document.createElement("p");
+              amount.className = "award-amount";
+              amount.textContent = "金额 " + record.amount;
+              card.appendChild(amount);
+            }
+            if (Array.isArray(record.contributions) && record.contributions.length) {
+              const points = document.createElement("ul");
+              points.className = "award-points";
+              record.contributions.forEach(function(contribution) {
+                const li = document.createElement("li");
+                li.textContent = contribution;
+                points.appendChild(li);
+              });
+              card.appendChild(points);
+            }
+            grid.appendChild(card);
+          });
+
+          awardsPanel.appendChild(label);
+          awardsPanel.appendChild(grid);
+        };
+
+        appendAwardGroup("COMPETITION AWARDS / 竞赛奖项", profile.awards);
+        appendAwardGroup("SCHOLARSHIPS & HONORS / 奖学金与其他荣誉", profile.honors);
+
+        if (Array.isArray(profile.supplements) && profile.supplements.length) {
+          const supplementLabel = document.createElement("p");
+          supplementLabel.className = "awards-group-label";
+          supplementLabel.textContent = "SUPPLEMENTARY RECORDS / 补充经历与校园服务";
+          const supplementList = document.createElement("ul");
+          supplementList.className = "awards-supplements";
+          profile.supplements.forEach(function(record) {
+            const li = document.createElement("li");
+            const title = document.createElement("span");
+            title.textContent = record.title;
+            li.appendChild(title);
+            if (record.note) {
+              const note = document.createElement("small");
+              note.textContent = record.note;
+              li.appendChild(note);
+            }
+            supplementList.appendChild(li);
+          });
+          awardsPanel.appendChild(supplementLabel);
+          awardsPanel.appendChild(supplementList);
         }
-        document.getElementById("contactPanel").innerHTML = contactLinks.join("");
+
+        const contactPanel = document.getElementById("contactPanel");
+        contactPanel.innerHTML = "";
+        if (profile.email) {
+          const emailLink = document.createElement("a");
+          emailLink.className = "contact-link";
+          emailLink.href = "mailto:" + profile.email;
+          emailLink.innerHTML = '<span class="contact-icon" aria-hidden="true">✉</span><span class="contact-text"><span class="contact-label">EMAIL / 邮箱</span><span class="contact-value"></span></span>';
+          emailLink.querySelector(".contact-value").textContent = profile.email;
+          contactPanel.appendChild(emailLink);
+        }
       })();
     </script>
     <script src="./script.js"></script>
