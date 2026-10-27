@@ -84,21 +84,62 @@ const projects = [
     featured: true,
   },
   {
-    id: "unity-puzzle-proto",
-    slug: "interactive-puzzle-prototype",
-    title: "交互解谜原型",
-    category: "Unity 游戏",
+    id: "unity-happy-kitchen",
+    slug: "happy-kitchen",
+    title: "开心厨房",
+    category: "Unity 游戏开发",
+    code: "WORKS / UNITY GAMEPLAY",
     filter: "unity-game",
     year: "",
-    summary: "",
-    cover: "",
-    coverPlaceholder: true,
-    media: [],
-    tools: [],
-    role: "",
+    summary: "类《胡闹厨房》风格的 Unity3D 单人模拟经营小游戏，完成订单接收、食材处理、烹饪制作与出餐结算的完整流程，并实践场景交互与游戏节奏设计。",
+    cover: "./assets/images/happy-kitchen-cover.png",
+    coverPlaceholder: false,
+    media: [
+      {
+        type: "video",
+        src: "./assets/videos/happy-kitchen-demo.mp4",
+        title: "GAMEPLAY / 玩法演示",
+        alt: "开心厨房玩法演示视频"
+      }
+    ],
+    tools: ["Unity 3D", "C#", "碰撞检测", "UI 系统", "3D 资源管理"],
+    role: "个人项目",
     status: "",
-    modules: {},
-    links: [],
+    modules: {
+      overview: {
+        label: "PROJECT OVERVIEW / 项目介绍",
+        body: "类《胡闹厨房》风格的 Unity3D 单人模拟经营小游戏。项目完成订单接收、食材处理、烹饪制作与出餐结算的完整业务流程，并通过设备交互和节奏控制搭建清晰、可玩的厨房经营体验。",
+        facts: [
+          { label: "项目名称", value: "开心厨房" },
+          { label: "项目类别", value: "Unity 游戏开发" },
+          { label: "使用引擎", value: "Unity 3D" },
+          { label: "项目类型", value: "个人项目" }
+        ]
+      },
+      technical: {
+        label: "TECHNICAL BREAKDOWN / 技术说明",
+        items: [
+          {
+            title: "核心玩法搭建",
+            body: "完成订单接收、食材处理、烹饪制作与出餐结算的完整业务流程。",
+            tags: ["Unity 3D", "C#"]
+          },
+          {
+            title: "场景交互设计",
+            body: "设计并实现玩家与厨房场景中各类设备的交互逻辑，确保操作流程清晰、反馈及时。",
+            tags: ["碰撞检测", "UI 系统"]
+          },
+          {
+            title: "游戏节奏控制",
+            body: "通过计时器、连击机制、订单刷新等设计元素调控游戏节奏，实践“压力—奖励”机制对玩家沉浸感的驱动。",
+            tags: ["3D 资源管理", "游戏节奏设计"]
+          }
+        ]
+      }
+    },
+    links: [
+      { label: "GitHub", url: "https://github.com/suluoluo1329451532-jpg/MyKitchenChaos" }
+    ],
     featured: true,
   },
   {
