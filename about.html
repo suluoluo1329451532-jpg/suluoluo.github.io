@@ -64,43 +64,63 @@
           <article class="about-module">
             <p class="about-module-label">INTRODUCTION / 关于我的创作方向</p>
             <p>
-              我是一名数字媒体专业的创作者，关注游戏开发、UE5 环境设计与三维视觉表达，希望将技术实现与美术表现结合，在游戏场景、三维资产和数字视觉等方向持续探索。
+              我具备游戏开发、玩法实践、项目策划、三维美术及 AI 应用等复合能力。通过 Unity 与 UE5 项目实践，我尝试从玩家体验和技术实现两个角度理解游戏玩法、角色控制、关卡设计与交互逻辑。同时，我具备三维建模、材质制作、场景渲染与动画展示等实践经验，也参与过项目创意规划、任务拆解、团队协作和 AI 产品原型开发。
             </p>
-          </article>
-          <article class="about-module">
-            <p class="about-module-label">PRACTICE / 项目与实践</p>
             <p>
-              在项目实践与实习中，我接触过 Unity 与 UE5 项目开发、三维建模、材质制作、渲染展示及动画制作，也有平面视觉设计方面的实践。我希望通过持续的项目积累，将自己的技术能力与美术表现力落实到具体作品中。
+              我希望将游戏理解、设计思维与技术实现结合，通过扎实的项目实践持续提升玩法设计、游戏开发和项目执行能力。
             </p>
           </article>
           <div class="skill-groups" aria-label="技能方向分组">
             <section class="skill-group">
-              <h3>GAME DEVELOPMENT / 游戏开发</h3>
+              <h3>GAME ENGINE / 游戏引擎</h3>
               <ul class="skill-tags">
                 <li>Unity</li>
                 <li>Unreal Engine 5</li>
               </ul>
             </section>
             <section class="skill-group">
-              <h3>ENVIRONMENT &amp; 3D / 环境与三维</h3>
+              <h3>PROGRAMMING &amp; LOGIC / 编程与逻辑</h3>
               <ul class="skill-tags">
-                <li>UE5 地编</li>
+                <li>C#</li>
+                <li>C++</li>
+                <li>PlayMaker</li>
+                <li>有限状态机（FSM）</li>
+              </ul>
+            </section>
+            <section class="skill-group">
+              <h3>3D &amp; DIGITAL ART / 三维与数字美术</h3>
+              <ul class="skill-tags">
+                <li>3ds Max</li>
                 <li>Blender</li>
-              </ul>
-            </section>
-            <section class="skill-group">
-              <h3>MATERIAL &amp; RENDERING / 材质与渲染</h3>
-              <ul class="skill-tags">
-                <li>Substance Painter</li>
-                <li>PBR Workflow</li>
-                <li>渲染</li>
-              </ul>
-            </section>
-            <section class="skill-group">
-              <h3>VISUAL DESIGN / 视觉设计</h3>
-              <ul class="skill-tags">
+                <li>Substance 3D Painter</li>
                 <li>Photoshop</li>
-                <li>视频剪辑</li>
+              </ul>
+            </section>
+            <section class="skill-group">
+              <h3>AI TOOLS / AI 工具</h3>
+              <ul class="skill-tags">
+                <li>ChatGPT</li>
+                <li>Claude Code</li>
+                <li>Gemini</li>
+                <li>Grok</li>
+                <li>Codex</li>
+              </ul>
+            </section>
+            <section class="skill-group">
+              <h3>DEVELOPMENT &amp; PUBLISHING / 开发与发布</h3>
+              <ul class="skill-tags">
+                <li>Unity / UE5 项目开发</li>
+                <li>调试</li>
+                <li>PC 发布</li>
+                <li>Android 发布</li>
+                <li>微信小游戏发布</li>
+              </ul>
+            </section>
+            <section class="skill-group">
+              <h3>LANGUAGES &amp; CERTIFICATES / 语言与证书</h3>
+              <ul class="skill-tags">
+                <li>CET-4</li>
+                <li>普通话二级甲等</li>
               </ul>
             </section>
           </div>
@@ -115,11 +135,7 @@
             <p class="education-code">FILE / EDU-001</p>
           </div>
           <div class="education-primary">
-            <div class="education-school-row">
-              <span class="placeholder-tag">PENDING</span>
-              <h3 class="education-school">学校名称待补充</h3>
-            </div>
-            <p class="education-major">专业 / 虚拟现实技术应用</p>
+            <p class="education-major">专业 / 虚拟现实技术应用 · 当前年级 / 大三</p>
           </div>
           <dl class="education-performance">
             <div>
@@ -185,8 +201,35 @@
 
         const experiencePanel = document.getElementById("aboutExperience");
         if (Array.isArray(profile.experience) && profile.experience.length) {
-          experiencePanel.className = "experience-list";
+          experiencePanel.className = "experience-groups";
+          const groupLabels = {
+            game: "GAME PROJECTS / 游戏制作项目",
+            competition: "COMPETITION PROJECTS / 竞赛项目实践",
+            aiProduct: "AI / PRODUCT PRACTICE / AI / 产品实践",
+            gameExperience: "GAME EXPERIENCE & DESIGN OBSERVATION / 游戏经历与设计理解"
+          };
+          let activeSection = "";
+          let activeList = null;
+
+          const beginExperienceGroup = function(section) {
+            const group = document.createElement("div");
+            group.className = "experience-group";
+            const label = document.createElement("p");
+            label.className = "experience-group-label";
+            label.textContent = groupLabels[section] || "";
+            activeList = document.createElement("div");
+            activeList.className = "experience-list";
+            group.appendChild(label);
+            group.appendChild(activeList);
+            experiencePanel.appendChild(group);
+            activeSection = section;
+          };
+
           profile.experience.forEach(function(item) {
+            const section = item.section || "game";
+            if (section !== activeSection) {
+              beginExperienceGroup(section);
+            }
             const card = document.createElement("article");
             card.className = item.featured ? "experience-card is-featured" : "experience-card";
 
@@ -220,8 +263,46 @@
 
             card.appendChild(header);
             card.appendChild(pointList);
-            experiencePanel.appendChild(card);
+            if (Array.isArray(item.tech) && item.tech.length) {
+              const techList = document.createElement("ul");
+              techList.className = "experience-tech";
+              item.tech.forEach(function(tech) {
+                const li = document.createElement("li");
+                li.textContent = tech;
+                techList.appendChild(li);
+              });
+              card.appendChild(techList);
+            }
+            activeList.appendChild(card);
           });
+
+          if (profile.gameInsights && Array.isArray(profile.gameInsights.categories) && profile.gameInsights.categories.length) {
+            beginExperienceGroup("gameExperience");
+            const insightPanel = document.createElement("div");
+            insightPanel.className = "game-insight-panel";
+            const insightNote = document.createElement("p");
+            insightNote.className = "game-insight-description";
+            insightNote.textContent = profile.gameInsights.description || "";
+            const categoryList = document.createElement("ul");
+            categoryList.className = "game-insight-categories";
+
+            profile.gameInsights.categories.forEach(function(category) {
+              const item = document.createElement("li");
+              const label = document.createElement("p");
+              label.className = "game-insight-label";
+              label.textContent = category.label || "";
+              const titles = document.createElement("p");
+              titles.className = "game-insight-titles";
+              titles.textContent = (category.titles || []).join(" ");
+              item.appendChild(label);
+              item.appendChild(titles);
+              categoryList.appendChild(item);
+            });
+
+            insightPanel.appendChild(insightNote);
+            insightPanel.appendChild(categoryList);
+            activeList.appendChild(insightPanel);
+          }
         } else {
           experiencePanel.innerHTML = '<div class="about-placeholder"><span class="placeholder-tag">EMPTY</span><span>此模块暂无数据，待后续补充。</span></div>';
         }
@@ -249,6 +330,12 @@
             const title = document.createElement("h3");
             title.textContent = record.title;
             card.appendChild(title);
+            if (record.role) {
+              const role = document.createElement("p");
+              role.className = "award-role";
+              role.textContent = record.role;
+              card.appendChild(role);
+            }
             if (record.level) {
               const level = document.createElement("p");
               level.className = "award-level";
@@ -278,13 +365,18 @@
           awardsPanel.appendChild(grid);
         };
 
-        appendAwardGroup("COMPETITION AWARDS / 竞赛奖项", profile.awards);
-        appendAwardGroup("SCHOLARSHIPS & HONORS / 奖学金与其他荣誉", profile.honors);
+        appendAwardGroup("NATIONAL COMPETITIONS / 国家级竞赛", profile.awards.filter(function(record) {
+          return record.tier === "national";
+        }));
+        appendAwardGroup("PROVINCIAL COMPETITIONS / 省级竞赛", profile.awards.filter(function(record) {
+          return record.tier === "province";
+        }));
+        appendAwardGroup("SCHOLARSHIPS / 奖学金", profile.honors);
 
         if (Array.isArray(profile.supplements) && profile.supplements.length) {
           const supplementLabel = document.createElement("p");
           supplementLabel.className = "awards-group-label";
-          supplementLabel.textContent = "SUPPLEMENTARY RECORDS / 补充经历与校园服务";
+          supplementLabel.textContent = "OTHER HONORS & EXPERIENCE / 其他荣誉与经历";
           const supplementList = document.createElement("ul");
           supplementList.className = "awards-supplements";
           profile.supplements.forEach(function(record) {
@@ -306,12 +398,11 @@
         const contactPanel = document.getElementById("contactPanel");
         contactPanel.innerHTML = "";
         if (profile.email) {
-          const emailLink = document.createElement("a");
-          emailLink.className = "contact-link";
-          emailLink.href = "mailto:" + profile.email;
-          emailLink.innerHTML = '<span class="contact-icon" aria-hidden="true">✉</span><span class="contact-text"><span class="contact-label">EMAIL / 邮箱</span><span class="contact-value"></span></span>';
-          emailLink.querySelector(".contact-value").textContent = profile.email;
-          contactPanel.appendChild(emailLink);
+          const emailInfo = document.createElement("div");
+          emailInfo.className = "contact-info";
+          emailInfo.innerHTML = '<span class="contact-label">EMAIL / 邮箱</span><span class="contact-value"></span>';
+          emailInfo.querySelector(".contact-value").textContent = profile.email;
+          contactPanel.appendChild(emailInfo);
         }
       })();
     </script>
