@@ -33,9 +33,15 @@
     </header>
 
     <main class="sub-page" id="top">
-      <section class="page-hero">
-        <p class="eyebrow">关于 / 个人简介</p>
-        <h1>关于我</h1>
+      <section class="page-hero about-hero">
+        <div class="about-hero-main">
+          <p class="eyebrow">关于 / 个人简介</p>
+          <h1>关于我</h1>
+        </div>
+        <div class="about-hero-meta" aria-label="个人档案标识">
+          <p>PROFILE FILE / 001</p>
+          <p>DIGITAL MEDIA CREATOR</p>
+        </div>
       </section>
 
       <section class="section about-section">
@@ -61,7 +67,7 @@
           <p class="profile-file-code">FILE YHN-001 / DIGITAL MEDIA</p>
         </aside>
         <div class="about-copy">
-          <article class="about-module">
+          <article class="about-panel about-intro">
             <p class="about-module-label">INTRODUCTION / 关于我的创作方向</p>
             <p>
               我具备游戏开发、玩法实践、项目策划、三维美术及 AI 应用等复合能力。通过 Unity 与 UE5 项目实践，我尝试从玩家体验和技术实现两个角度理解游戏玩法、角色控制、关卡设计与交互逻辑。同时，我具备三维建模、材质制作、场景渲染与动画展示等实践经验，也参与过项目创意规划、任务拆解、团队协作和 AI 产品原型开发。
@@ -70,59 +76,71 @@
               我希望将游戏理解、设计思维与技术实现结合，通过扎实的项目实践持续提升玩法设计、游戏开发和项目执行能力。
             </p>
           </article>
-          <div class="skill-groups" aria-label="技能方向分组">
-            <section class="skill-group">
-              <h3>GAME ENGINE / 游戏引擎</h3>
-              <ul class="skill-tags">
-                <li>Unity</li>
-                <li>Unreal Engine 5</li>
-              </ul>
-            </section>
-            <section class="skill-group">
-              <h3>PROGRAMMING &amp; LOGIC / 编程与逻辑</h3>
-              <ul class="skill-tags">
-                <li>C#</li>
-                <li>C++</li>
-                <li>PlayMaker</li>
-                <li>有限状态机（FSM）</li>
-              </ul>
-            </section>
-            <section class="skill-group">
-              <h3>3D &amp; DIGITAL ART / 三维与数字美术</h3>
-              <ul class="skill-tags">
-                <li>3ds Max</li>
-                <li>Blender</li>
-                <li>Substance 3D Painter</li>
-                <li>Photoshop</li>
-              </ul>
-            </section>
-            <section class="skill-group">
-              <h3>AI TOOLS / AI 工具</h3>
-              <ul class="skill-tags">
-                <li>ChatGPT</li>
-                <li>Claude Code</li>
-                <li>Gemini</li>
-                <li>Grok</li>
-                <li>Codex</li>
-              </ul>
-            </section>
-            <section class="skill-group">
-              <h3>DEVELOPMENT &amp; PUBLISHING / 开发与发布</h3>
-              <ul class="skill-tags">
-                <li>Unity / UE5 项目开发</li>
-                <li>调试</li>
-                <li>PC 发布</li>
-                <li>Android 发布</li>
-                <li>微信小游戏发布</li>
-              </ul>
-            </section>
-            <section class="skill-group">
-              <h3>LANGUAGES &amp; CERTIFICATES / 语言与证书</h3>
-              <ul class="skill-tags">
-                <li>CET-4</li>
-                <li>普通话二级甲等</li>
-              </ul>
-            </section>
+          <div class="skill-panel-stack" aria-label="技能方向分组">
+            <div class="about-panel skill-panel">
+              <div class="skill-groups">
+                <section class="skill-group">
+                  <h3>GAME ENGINE / 游戏引擎</h3>
+                  <ul class="skill-tags">
+                    <li>Unity</li>
+                    <li>Unreal Engine 5</li>
+                  </ul>
+                </section>
+                <section class="skill-group">
+                  <h3>PROGRAMMING &amp; LOGIC / 编程与逻辑</h3>
+                  <ul class="skill-tags">
+                    <li>C#</li>
+                    <li>C++</li>
+                    <li>PlayMaker</li>
+                    <li>有限状态机（FSM）</li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+            <div class="about-panel skill-panel">
+              <div class="skill-groups">
+                <section class="skill-group">
+                  <h3>3D &amp; DIGITAL ART / 三维与数字美术</h3>
+                  <ul class="skill-tags">
+                    <li>3ds Max</li>
+                    <li>Blender</li>
+                    <li>Substance 3D Painter</li>
+                    <li>Photoshop</li>
+                  </ul>
+                </section>
+                <section class="skill-group">
+                  <h3>AI TOOLS / AI 工具</h3>
+                  <ul class="skill-tags">
+                    <li>ChatGPT</li>
+                    <li>Claude Code</li>
+                    <li>Gemini</li>
+                    <li>Grok</li>
+                    <li>Codex</li>
+                  </ul>
+                </section>
+              </div>
+            </div>
+            <div class="about-panel skill-panel">
+              <div class="skill-groups">
+                <section class="skill-group">
+                  <h3>DEVELOPMENT &amp; PUBLISHING / 开发与发布</h3>
+                  <ul class="skill-tags">
+                    <li>Unity / UE5 项目开发</li>
+                    <li>调试</li>
+                    <li>PC 发布</li>
+                    <li>Android 发布</li>
+                    <li>微信小游戏发布</li>
+                  </ul>
+                </section>
+                <section class="skill-group">
+                  <h3>LANGUAGES &amp; CERTIFICATES / 语言与证书</h3>
+                  <ul class="skill-tags">
+                    <li>CET-4</li>
+                    <li>普通话二级甲等</li>
+                  </ul>
+                </section>
+              </div>
+            </div>
           </div>
         </div>
       </section>
