@@ -9,45 +9,50 @@ const projects = [
   {
     id: "ue5-ruins-lab",
     slug: "ruins-research-lab",
-    title: "遗迹研究站",
+    title: "研究站遗迹",
     category: "UE5 地编 / 环境设计",
     code: "WORKS / UE5 ENVIRONMENT",
     filter: "ue5-environment",
     year: "2026",
-    summary: "《遗迹研究站》是一项基于 Unreal Engine 5 的环境场景作品。场景以水域中的黄色研究站建筑为视觉主体，结合周围的森林、水面与环境氛围，构建具有鲜明色彩对比和空间层次的场景画面。",
+    summary: "《研究站遗迹》是一项基于 Unreal Engine 5 的环境场景作品。场景以水域中的黄色研究站建筑为视觉主体，结合周围的森林、水面与环境氛围，构建具有鲜明色彩对比和空间层次的场景画面。",
     cover: "./assets/ruins-research-station.png",
     coverPlaceholder: false,
     media: [
       {
+        type: "video",
+        src: "./assets/videos/ruins-research-station.mp4",
+        title: "SCENE SHOWREEL / 场景展示",
+        alt: "研究站遗迹场景展示视频"
+      },
+      {
+        type: "image",
+        src: "./assets/ruins-research-station.png",
+        alt: "研究站遗迹封面场景"
+      },
+      {
         type: "image",
         src: "./assets/images/ruins-research-station-01.jpg",
-        alt: "遗迹研究站场景图 01"
+        alt: "研究站遗迹场景图 01"
       },
       {
         type: "image",
         src: "./assets/images/ruins-research-station-02.jpg",
-        alt: "遗迹研究站场景图 02"
+        alt: "研究站遗迹场景图 02"
       },
       {
         type: "image",
         src: "./assets/images/ruins-research-station-03.jpg",
-        alt: "遗迹研究站场景图 03"
+        alt: "研究站遗迹场景图 03"
       },
       {
         type: "image",
         src: "./assets/images/ruins-research-station-04.jpg",
-        alt: "遗迹研究站场景图 04"
+        alt: "研究站遗迹场景图 04"
       },
       {
         type: "image",
         src: "./assets/images/ruins-research-station-05.jpg",
-        alt: "遗迹研究站场景图 05"
-      },
-      {
-        type: "video",
-        src: "./assets/videos/ruins-research-station.mp4",
-        title: "SCENE SHOWREEL / 场景展示",
-        alt: "遗迹研究站场景展示视频"
+        alt: "研究站遗迹场景图 05"
       }
     ],
     tools: ["Unreal Engine 5"],
@@ -56,9 +61,9 @@ const projects = [
     modules: {
       overview: {
         label: "PROJECT OVERVIEW / 项目介绍",
-        body: "《遗迹研究站》是一项基于 Unreal Engine 5 的环境场景作品。场景以水域中的黄色研究站建筑为视觉主体，结合周围的森林、水面与环境氛围，构建具有鲜明色彩对比和空间层次的场景画面。",
+        body: "《研究站遗迹》是一项基于 Unreal Engine 5 的环境场景作品。场景以水域中的黄色研究站建筑为视觉主体，结合周围的森林、水面与环境氛围，构建具有鲜明色彩对比和空间层次的场景画面。",
         facts: [
-          { label: "项目名称", value: "遗迹研究站" },
+          { label: "项目名称", value: "研究站遗迹" },
           { label: "项目类别", value: "UE5 地编 / 环境设计" },
           { label: "使用引擎", value: "Unreal Engine 5" },
           { label: "创作年份", value: "2026" }

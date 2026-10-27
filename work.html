@@ -128,14 +128,14 @@
         carouselDots.innerHTML = "";
 
         const carouselItems = [];
-        if (project.cover) {
-          carouselItems.push({ type: "image", src: project.cover, alt: project.title });
-        }
         (project.media || []).forEach(item => {
           if ((item.type === "image" || item.type === "video") && item.src) {
             carouselItems.push(item);
           }
         });
+        if (!carouselItems.length && project.cover) {
+          carouselItems.push({ type: "image", src: project.cover, alt: project.title });
+        }
 
         const carouselSlides = [];
         const carouselDotButtons = [];
@@ -144,6 +144,7 @@
         const updateCarousel = function(nextIndex) {
           if (!carouselSlides.length) return;
           carouselIndex = (nextIndex + carouselSlides.length) % carouselSlides.length;
+          carouselTrack.style.transform = "translateX(-" + (carouselIndex * 100) + "%)";
           carouselSlides.forEach((slide, index) => {
             const isActive = index === carouselIndex;
             slide.classList.toggle("is-active", isActive);
