@@ -143,6 +143,83 @@ const projects = [
     featured: true,
   },
   {
+    id: "unity-jys-world",
+    slug: "jys-world",
+    title: "JY's World",
+    category: "Unity 游戏开发",
+    code: "WORKS / UNITY GAMEPLAY",
+    filter: "unity-game",
+    year: "",
+    summary: "以像素风赛博朋克视觉为主题的 Unity 2D 个人游戏项目。使用 C# 实现角色控制、物理碰撞、敌人 AI、道具拾取与计分系统，并通过有限状态机管理角色行为与动画。游戏美术资源全部由 AI 生成，再经动作 GIF 制作、抽帧和 Photoshop 处理后导入 Unity。",
+    cover: "./assets/images/jys-world-cover.png",
+    coverPlaceholder: false,
+    media: [
+      {
+        type: "video",
+        src: "./assets/videos/jys-world-demo.mp4",
+        title: "GAMEPLAY / 玩法演示",
+        alt: "JY's World 玩法演示视频"
+      },
+      {
+        type: "image",
+        src: "./assets/images/jys-world-01.png",
+        alt: "JY's World 游戏画面 01"
+      },
+      {
+        type: "image",
+        src: "./assets/images/jys-world-02.png",
+        alt: "JY's World 游戏画面 02"
+      },
+      {
+        type: "image",
+        src: "./assets/images/jys-world-03.png",
+        alt: "JY's World 游戏画面 03"
+      }
+    ],
+    tools: ["Unity 2D", "C#", "FSM", "AI 生成美术", "物理与碰撞", "动画系统"],
+    role: "个人项目",
+    status: "",
+    modules: {
+      overview: {
+        label: "PROJECT OVERVIEW / 项目介绍",
+        body: "《JY's World》是一款使用 Unity 2D 开发的个人游戏项目。项目以 C# 脚本实现核心玩法逻辑，涵盖角色控制、物理碰撞、敌人行为、道具拾取与计分系统，并尝试将 AI 生成的美术资源制作成可用于游戏的角色动画。",
+        facts: [
+          { label: "项目名称", value: "JY's World" },
+          { label: "项目类别", value: "Unity 游戏开发" },
+          { label: "项目类型", value: "Unity 2D 个人游戏项目" },
+          { label: "使用引擎", value: "Unity 2D" }
+        ]
+      },
+      technical: {
+        label: "TECHNICAL BREAKDOWN / 技术说明",
+        items: [
+          {
+            title: "核心玩法与系统",
+            body: "使用 C# 从零实现游戏核心逻辑，包括角色控制与基础行为、物理系统及碰撞处理、敌人 AI 行为逻辑、道具拾取与计分系统。",
+            tags: ["Unity 2D", "C#", "物理与碰撞"]
+          },
+          {
+            title: "角色状态机与动画",
+            body: "编写角色有限状态机（FSM），管理移动、跳跃、攻击、受击等状态之间的切换，并协调角色行为逻辑和动画表现，保证状态切换与动画播放相匹配。",
+            tags: ["FSM", "动画系统"]
+          },
+          {
+            title: "AI 生成美术资源",
+            body: "游戏美术资源全部通过 AI 生成。角色资源经过人物形象生成、动作 GIF 生成、GIF 抽帧和 Photoshop 图像处理后，再导入 Unity 完成角色动画制作与整合。",
+            tags: ["AI 生成美术", "Photoshop"]
+          },
+          {
+            title: "技术实践",
+            body: "本项目采用 C# 脚本驱动方式实现核心玩法，可作为后续 PlayMaker 可视化编程版本的功能对照基准，用于理解脚本驱动开发与可视化编程两种技术路线的差异。",
+            tags: ["C#"]
+          }
+        ]
+      }
+    },
+    links: [],
+    featured: false,
+  },
+  {
     id: "prop-gen-asset",
     slug: "nextgen-prop-asset",
     title: "次世代道具资产",
