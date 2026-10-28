@@ -220,6 +220,135 @@ const projects = [
     featured: false,
   },
   {
+    id: "unity-shooting-game",
+    slug: "shooting-game",
+    title: "Shooting Game",
+    category: "Unity 游戏开发",
+    code: "WORKS / UNITY GAMEPLAY",
+    filter: "unity-game",
+    year: "",
+    summary: "通过逐步学习与手动编写代码，完成 Unity 3D 俯视角射击游戏的功能搭建与实现，并在此基础上进行个性化改造，替换角色模型、整合自定义资源。进一步面向微信小游戏开展移动端适配与分包优化，完成项目部署与运行验证。",
+    cover: "./assets/images/shooting-game-cover.jpg",
+    coverPlaceholder: false,
+    media: [
+      {
+        type: "video",
+        src: "./assets/videos/shooting-game-demo.mp4",
+        title: "GAMEPLAY / 玩法演示",
+        alt: "Shooting Game 玩法演示视频"
+      }
+    ],
+    tools: ["Unity 3D", "C#", "俯视角射击", "角色模型替换", "移动端适配", "微信小游戏", "分包优化"],
+    role: "个人项目",
+    status: "",
+    modules: {
+      overview: {
+        label: "PROJECT OVERVIEW / 项目介绍",
+        body: "Shooting Game 是一个围绕 Unity 3D 俯视角射击游戏开展的学习与改造实践项目。我通过逐步理解功能逻辑并手动编写代码，完成游戏核心功能的搭建与实现；在此基础上替换角色模型、整合自主准备的资源，并面向微信小游戏完成移动端适配、分包优化和部署验证。",
+        facts: [
+          { label: "项目名称", value: "Shooting Game" },
+          { label: "游戏引擎", value: "Unity 3D" },
+          { label: "编程语言", value: "C#" },
+          { label: "项目类型", value: "俯视角射击游戏" },
+          { label: "平台适配", value: "微信小游戏" },
+          { label: "工具", value: "微信开发者工具" },
+          { label: "优化实践", value: "分包优化" }
+        ]
+      },
+      technical: {
+        label: "TECHNICAL BREAKDOWN / 技术说明",
+        items: [
+          {
+            title: "学习与功能实现",
+            body: "通过逐步学习与理解游戏功能逻辑，使用 C# 手动编写代码，完成 Unity 3D 俯视角射击游戏的功能搭建与实现。",
+            tags: ["C#", "Unity 3D"]
+          },
+          {
+            title: "个性化改造与资源整合",
+            body: "在已实现的游戏功能基础上进行个性化改造，替换原有角色模型，并整合自主准备的角色资源。",
+            tags: ["角色模型替换", "资源整合"]
+          },
+          {
+            title: "移动端适配",
+            body: "围绕微信小游戏运行环境及移动设备的运行、交互需求，对项目进行适配与调试。",
+            tags: ["移动端适配"]
+          },
+          {
+            title: "微信小游戏分包优化",
+            body: "针对微信小游戏平台的包体限制，采用分包等优化方案，调整项目资源组织与加载方式，以解决项目在微信平台部署过程中的适配问题。",
+            tags: ["微信小游戏", "分包优化"]
+          },
+          {
+            title: "构建、调试与部署",
+            body: "完成项目构建、调试及微信开发者工具部署验证，实现从 Unity 项目开发到微信小游戏平台运行的完整实践流程。",
+            tags: ["微信开发者工具"]
+          }
+        ]
+      }
+    },
+    links: [],
+    featured: false,
+  },
+  {
+    id: "unity-playmaker-2d",
+    slug: "playmaker-2d-game",
+    title: "Unity 2D 小游戏｜PlayMaker 可视化编程版",
+    category: "Unity 游戏开发",
+    code: "WORKS / UNITY GAMEPLAY",
+    filter: "unity-game",
+    year: "",
+    summary: "使用 Unity 2D 与 PlayMaker 可视化编程工具，实现角色控制、场景交互、敌人生成及关卡进度管理。通过有限状态机组织角色行为与游戏流程，并与 C# 脚本版本进行对照，探索可视化编程在开发效率和逻辑维护方面的特点。",
+    cover: "./assets/images/playmaker-2d-game.jpg",
+    coverPlaceholder: false,
+    media: [
+      {
+        type: "video",
+        src: "./assets/videos/playmaker-2d-game.mp4",
+        poster: "./assets/images/playmaker-2d-game-poster.jpg",
+        title: "GAMEPLAY / 玩法演示",
+        alt: "PlayMaker 可视化编程版 Unity 2D 小游戏演示视频"
+      }
+    ],
+    tools: ["Unity 2D", "PlayMaker", "FSM", "可视化编程", "游戏逻辑"],
+    role: "个人项目",
+    status: "",
+    modules: {
+      overview: {
+        label: "PROJECT OVERVIEW / 项目介绍",
+        body: "这是一个使用 Unity 2D 与 PlayMaker 可视化编程工具实现的个人小游戏项目。项目围绕角色控制、场景交互、敌人生成与关卡进度管理展开，通过有限状态机组织游戏行为与流程逻辑。在 C# 脚本实现版本的基础上，本项目采用 PlayMaker 探索可视化编程的实现方式，并通过同类玩法的对照，理解不同开发路线在逻辑组织、实现效率和后续维护方面的差异。",
+        facts: [
+          { label: "项目名称", value: "Unity 2D 小游戏" },
+          { label: "项目类别", value: "Unity 游戏开发" },
+          { label: "项目类型", value: "Unity 2D 小游戏" },
+          { label: "开发方式", value: "PlayMaker 可视化编程" },
+          { label: "项目定位", value: "个人项目 / 开发方式对比实践" }
+        ]
+      },
+      technical: {
+        label: "TECHNICAL BREAKDOWN / 技术说明",
+        items: [
+          {
+            title: "核心玩法实现",
+            body: "使用 PlayMaker 可视化状态机搭建游戏逻辑，实现角色控制与行为逻辑、场景交互、敌人生成及关卡进度管理。",
+            tags: ["PlayMaker", "游戏逻辑"]
+          },
+          {
+            title: "有限状态机与游戏流程",
+            body: "利用 PlayMaker 的状态机组织角色行为和游戏流程，体现不同状态、事件及逻辑之间的关联，重点呈现可视化逻辑的组织方式。",
+            tags: ["FSM", "可视化编程"]
+          },
+          {
+            title: "开发方式对比",
+            body: "本项目与此前的 C# 脚本版本采用相同的玩法作为功能对照基准。通过对比两种实现方式，探索 C# 脚本与可视化状态机的逻辑组织差异、可视化编程在逻辑搭建和调试过程中的特点，以及不同开发方式在复杂逻辑维护与后续扩展方面可能存在的差异。",
+            tags: ["C# 对照", "PlayMaker"]
+          }
+        ]
+      }
+    },
+    links: [],
+    featured: false,
+  },
+  {
     id: "prop-gen-asset",
     slug: "nextgen-prop-asset",
     title: "次世代道具资产",

@@ -177,7 +177,7 @@
             const video = document.createElement("video");
             video.controls = true;
             video.preload = "metadata";
-            video.poster = project.cover;
+            video.poster = item.poster || project.cover;
             video.setAttribute("playsinline", "");
             video.setAttribute("aria-label", item.alt || project.title);
             const source = document.createElement("source");
@@ -268,7 +268,10 @@
         const metaEl = document.getElementById("detailMeta");
         let metaHtml = "";
         if (project.year) metaHtml += "<div><dt>年份</dt><dd>" + project.year + "</dd></div>";
-        if (project.tools && project.tools.length) metaHtml += "<div><dt>工具</dt><dd>" + project.tools.join(" / ") + "</dd></div>";
+        if (project.tools && project.tools.length) {
+          const toolsHtml = project.tools.map(function(tool) { return "<span>" + tool + "</span>"; }).join("");
+          metaHtml += "<div><dt>工具</dt><dd class=\"detail-meta-tools\">" + toolsHtml + "</dd></div>";
+        }
         if (project.role) metaHtml += "<div><dt>职责</dt><dd>" + project.role + "</dd></div>";
         if (project.status) metaHtml += "<div><dt>状态</dt><dd>" + project.status + "</dd></div>";
         metaEl.innerHTML = metaHtml || "<div><dt>信息</dt><dd>项目资料正在整理中</dd></div>";
