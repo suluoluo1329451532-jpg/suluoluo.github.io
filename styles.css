@@ -2224,53 +2224,55 @@ h3 {
 }
 
 .detail-gallery-wall {
-  columns: 4;
-  column-gap: 12px;
+  columns: 5 200px;
+  column-gap: 18px;
 }
 
 .detail-gallery-item {
-  margin: 0 0 12px;
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 18px;
   break-inside: avoid;
   page-break-inside: avoid;
+  vertical-align: top;
 }
 
 .detail-gallery-thumb {
-  padding: 0;
-  border: none;
-  border-radius: 8px;
-  overflow: hidden;
-  background: transparent;
-  cursor: pointer;
   display: block;
   width: 100%;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 .detail-gallery-thumb:hover {
-  opacity: 0.92;
+  opacity: 0.88;
 }
 
 .detail-gallery-thumb img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 8px;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 @media (max-width: 1200px) {
-  .detail-gallery-wall { columns: 3; }
+  .detail-gallery-wall { columns: 4 200px; }
 }
 
-@media (max-width: 768px) {
-  .detail-gallery-wall { columns: 2; }
+@media (max-width: 900px) {
+  .detail-gallery-wall { columns: 3 180px; }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
+  .detail-gallery-wall { columns: 2 150px; }
+}
+
+@media (max-width: 420px) {
   .detail-gallery-wall { columns: 1; }
-}
-
-.detail-gallery-num,
-.detail-gallery-name {
-  display: none;
 }
 
 .detail-lightbox {
@@ -2425,34 +2427,6 @@ h3 {
   font-family: var(--font-mono);
   font-size: 0.58rem;
   letter-spacing: 0.06em;
-}
-
-.detail-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
-}
-
-.detail-gallery figure {
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--bg-elevated);
-}
-
-.detail-gallery img,
-.detail-gallery video {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-}
-
-.detail-gallery figcaption {
-  padding: 8px 12px;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--muted);
-  border-top: 1px solid var(--line);
 }
 
 .detail-empty {
