@@ -10,7 +10,7 @@ const projects = [
     id: "ue5-ruins-lab",
     slug: "ruins-research-lab",
     title: "研究站遗迹",
-    category: "UE5 地编 / 环境设计",
+    category: "UE5 地编与Niagara特效",
     code: "WORKS / UE5 ENVIRONMENT",
     filter: "ue5-environment",
     year: "2026",
@@ -64,7 +64,7 @@ const projects = [
         body: "《研究站遗迹》是一项基于 Unreal Engine 5 的环境场景作品。场景以水域中的黄色研究站建筑为视觉主体，结合周围的森林、水面与环境氛围，构建具有鲜明色彩对比和空间层次的场景画面。",
         facts: [
           { label: "项目名称", value: "研究站遗迹" },
-          { label: "项目类别", value: "UE5 地编 / 环境设计" },
+          { label: "项目类别", value: "UE5 地编与Niagara特效" },
           { label: "使用引擎", value: "Unreal Engine 5" },
           { label: "创作年份", value: "2026" }
         ]
@@ -161,6 +161,71 @@ const projects = [
             title: "场景与界面结构",
             body: "项目包含主菜单、难度选择、简单地图和困难地图四个主要场景，并提供暂停界面及返回游戏、设置、退出到菜单等菜单交互，构成完整的游戏入口和关卡流程。",
             tags: ["主菜单", "难度选择", "暂停界面"]
+          }
+        ]
+      }
+    },
+    links: [],
+    featured: false,
+  },
+  {
+    id: "unreal-desert-adventure",
+    slug: "desert-adventure",
+    title: "荒漠大冒险",
+    category: "Unreal 游戏项目",
+    code: "WORKS / UNREAL GAMEPLAY",
+    filter: "ue5-game",
+    year: "",
+    summary: "《荒漠大冒险》是一款使用 Unreal Engine 5 制作的 2D 寻宝小游戏。通过蓝图实现角色移动、碰撞检测与状态切换等核心交互逻辑，并实践场景搭建、UI 设计、动画序列编辑及输入映射配置。完成 PC、Android 和 iOS 多平台打包，实践从游戏开发、调试到多平台构建交付的完整流程。",
+    cover: "./assets/images/desert-adventure-cover.png",
+    coverPlaceholder: false,
+    media: [
+      {
+        type: "video",
+        src: "./assets/videos/desert-adventure-demo.mp4",
+        poster: "./assets/images/desert-adventure-cover.png",
+        title: "GAMEPLAY / 玩法演示",
+        alt: "荒漠大冒险 2D 寻宝小游戏玩法演示视频"
+      }
+    ],
+    tools: ["UE5", "2D GAME", "BLUEPRINT", "角色控制", "多平台打包"],
+    role: "个人项目",
+    status: "",
+    modules: {
+      overview: {
+        label: "PROJECT OVERVIEW / 项目介绍",
+        body: "《荒漠大冒险》是一款使用 Unreal Engine 5 制作的 2D 寻宝小游戏。项目围绕角色控制与场景交互展开，使用蓝图可视化编程实现游戏核心逻辑，并通过场景搭建、UI 设计、动画序列编辑和输入映射配置，实践 UE5 二维游戏的开发工作流。\n项目完成了核心功能开发与运行调试，并进行了 PC、Android 和 iOS 多平台打包实践，进一步加深了对 Unreal Engine 5 项目开发与跨平台构建流程的理解。",
+        facts: [
+          { label: "项目名称", value: "荒漠大冒险" },
+          { label: "游戏类型", value: "2D 寻宝小游戏" },
+          { label: "开发引擎", value: "Unreal Engine 5" },
+          { label: "编程方式", value: "蓝图 Blueprint" },
+          { label: "核心开发", value: "角色移动 / 碰撞检测 / 状态切换" },
+          { label: "构建平台", value: "PC / Android / iOS" }
+        ]
+      },
+      technical: {
+        label: "TECHNICAL BREAKDOWN / 玩法说明",
+        items: [
+          {
+            title: "角色控制与交互逻辑",
+            body: "使用 UE5 蓝图组织角色移动、碰撞检测和状态切换等基础逻辑，将玩家输入、场景交互和角色状态变化连接起来，实现可运行的核心玩法流程。",
+            tags: ["Blueprint", "角色移动", "碰撞检测", "状态切换"]
+          },
+          {
+            title: "场景搭建与 UI 设计",
+            body: "围绕 2D 寻宝玩法进行场景搭建，并完成相应界面布局与基础交互设计，使玩家能够通过界面理解当前操作、目标和游戏状态。",
+            tags: ["场景搭建", "UI 设计"]
+          },
+          {
+            title: "动画与输入配置",
+            body: "通过动画序列编辑组织角色表现，并使用输入映射配置连接玩家操作与游戏行为，实践角色动画、输入响应和玩法逻辑之间的配合。",
+            tags: ["动画序列", "输入映射"]
+          },
+          {
+            title: "PC、Android 与 iOS 多平台打包",
+            body: "围绕同一个 UE5 项目分别进行 PC、Android 和 iOS 平台打包实践，了解不同目标平台的构建配置与交付流程。该经历属于多平台构建实践，不等同于应用商店正式上架或全部设备兼容性验证。",
+            tags: ["PC", "Android", "iOS", "多平台打包"]
           }
         ]
       }
@@ -533,7 +598,7 @@ const projects = [
     id: "ue5-roam-video",
     slug: "ue5-scene-roaming-video",
     title: "UE5 场景漫游视频",
-    category: "UE5 地编 / 环境设计",
+    category: "UE5 地编与Niagara特效",
     filter: "ue5-environment",
     year: "",
     summary: "",
@@ -551,7 +616,7 @@ const projects = [
     id: "ue5-open-world",
     slug: "open-world-landscape",
     title: "开放世界地编练习",
-    category: "UE5 地编 / 环境设计",
+    category: "UE5 地编与Niagara特效",
     filter: "ue5-environment",
     year: "",
     summary: "",
@@ -573,7 +638,7 @@ const categories = [
   { key: "all",                label: "全部作品" },
   { key: "unity-game",         label: "Unity 游戏开发" },
   { key: "ue5-game",           label: "Unreal 游戏项目" },
-  { key: "ue5-environment",    label: "UE5 地编与环境设计" },
+  { key: "ue5-environment",    label: "UE5 地编与Niagara特效" },
   { key: "photoshop-design",   label: "Photoshop 平面设计" },
   { key: "3d-modeling",        label: "三维建模" },
   { key: "blender-animation",  label: "Blender 动画" },
@@ -652,16 +717,16 @@ const profile = {
       result: ""
     },
     {
-      title: "《沙漠寻宝》UE5 二维小游戏",
+      title: "《荒漠大冒险》UE5 二维小游戏",
       category: "个人项目",
-      role: "玩法设计 / 蓝图逻辑 / 项目打包与发布",
+      role: "玩法实现 / 蓝图逻辑 / 多平台打包",
       featured: false,
       points: [
         "使用 UE5 蓝图实现角色移动、碰撞检测、状态切换等玩法逻辑。",
         "实践场景搭建、UI 设计、动画序列编辑和输入映射。",
-        "完成 PC 端打包发布与运行验证。"
+        "完成 PC、Android 与 iOS 多平台打包实践。"
       ],
-      tech: ["UE5", "Blueprint"],
+      tech: ["UE5", "Blueprint", "多平台打包"],
       result: ""
     },
     {
