@@ -84,6 +84,91 @@ const projects = [
     featured: true,
   },
   {
+    id: "unreal-secret-treasure",
+    slug: "secret-treasure",
+    title: "秘境寻宝",
+    category: "Unreal 游戏项目",
+    code: "WORKS / UNREAL GAMEPLAY",
+    filter: "ue5-game",
+    year: "",
+    summary: "《秘境寻宝》是一款使用 Unreal Engine 4 制作的 3D 寻宝闯关游戏。玩家需要先回答关卡老者提出的问题，再进入地图探索并收集指定数量的金币以完成挑战。游戏设置简单与困难两种难度：简单关卡侧重基础问答与金币收集，困难关卡则加入更具挑战性的问题和炸弹陷阱，结合关卡探索、资源收集与风险规避，构建完整的闯关体验。",
+    cover: "./assets/images/secret-treasure-cover.png",
+    coverPlaceholder: false,
+    media: [
+      {
+        type: "video",
+        src: "./assets/videos/secret-treasure-demo.mp4",
+        poster: "./assets/images/secret-treasure-cover.png",
+        title: "GAMEPLAY / 玩法演示",
+        alt: "秘境寻宝 3D 寻宝闯关游戏玩法演示视频"
+      },
+      {
+        type: "image",
+        src: "./assets/images/secret-treasure-menu.png",
+        alt: "秘境寻宝主菜单场景"
+      },
+      {
+        type: "image",
+        src: "./assets/images/secret-treasure-difficulty.png",
+        alt: "秘境寻宝简单、困难与返回难度选择界面"
+      },
+      {
+        type: "image",
+        src: "./assets/images/secret-treasure-pause.png",
+        alt: "秘境寻宝暂停游戏菜单"
+      },
+      {
+        type: "image",
+        src: "./assets/images/secret-treasure-cover.png",
+        alt: "秘境寻宝关卡实机画面，角色在森林场景中收集金币"
+      }
+    ],
+    tools: ["UNREAL ENGINE 4", "3D GAME", "关卡设计", "金币收集", "问答机制", "难度设计"],
+    role: "个人项目",
+    status: "",
+    modules: {
+      overview: {
+        label: "PROJECT OVERVIEW / 项目介绍",
+        body: "《秘境寻宝》是一款使用 Unreal Engine 4 制作的 3D 寻宝闯关游戏。游戏采用明亮清新的卡通 3D 美术风格，以场景探索、知识问答和金币收集为核心玩法。玩家需要根据不同关卡的挑战要求完成寻宝任务。\n项目包含主菜单、难度选择、简单地图和困难地图四个主要场景，并配有暂停界面及菜单交互，形成了从进入游戏、选择挑战难度，到探索地图并达成通关目标的相对完整的游戏流程。",
+        facts: [
+          { label: "项目名称", value: "秘境寻宝" },
+          { label: "项目类别", value: "Unreal 游戏项目" },
+          { label: "游戏类型", value: "3D 寻宝闯关游戏" },
+          { label: "开发引擎", value: "Unreal Engine 4" },
+          { label: "美术风格", value: "明亮清新的卡通 3D 风格" },
+          { label: "关卡难度", value: "简单 / 困难" }
+        ]
+      },
+      technical: {
+        label: "TECHNICAL BREAKDOWN / 玩法说明",
+        items: [
+          {
+            title: "问答解锁与关卡挑战",
+            body: "玩家进入关卡后，需要先回答老者提出的问题，完成问答环节后才能开始金币收集挑战。问答环节承担关卡引入和挑战解锁的作用。",
+            tags: ["问答机制", "关卡挑战"]
+          },
+          {
+            title: "金币收集与通关目标",
+            body: "玩家需要在 3D 场景中探索并收集金币，达到关卡指定的金币数量要求后完成通关目标。场景中的金币位置引导玩家穿行并观察关卡空间。",
+            tags: ["金币收集", "场景探索", "通关目标"]
+          },
+          {
+            title: "双难度关卡设计",
+            body: "简单关卡以较基础的问题和无炸弹陷阱的金币收集为主，帮助玩家熟悉玩法；困难关卡使用难度更高的问题，并在地图中加入炸弹陷阱，要求玩家在收集过程中兼顾环境风险。",
+            tags: ["简单难度", "困难难度", "炸弹陷阱"]
+          },
+          {
+            title: "场景与界面结构",
+            body: "项目包含主菜单、难度选择、简单地图和困难地图四个主要场景，并提供暂停界面及返回游戏、设置、退出到菜单等菜单交互，构成完整的游戏入口和关卡流程。",
+            tags: ["主菜单", "难度选择", "暂停界面"]
+          }
+        ]
+      }
+    },
+    links: [],
+    featured: false,
+  },
+  {
     id: "unity-happy-kitchen",
     slug: "happy-kitchen",
     title: "开心厨房",
@@ -349,6 +434,66 @@ const projects = [
     featured: false,
   },
   {
+    id: "unity-garden-defense",
+    slug: "garden-defense",
+    title: "花园防守",
+    category: "Unity 游戏开发",
+    code: "WORKS / UNITY GAMEPLAY",
+    filter: "unity-game",
+    year: "",
+    summary: "与 Trae AI 编程助手协作开发的 Unity 2D 塔防小游戏，采用轻松可爱的儿童简笔画风格。围绕网格化战场、阳光资源、植物选择与防守布阵等机制构建游戏玩法，在开发过程中探索 AI 辅助编程在游戏功能实现与项目迭代中的应用。",
+    cover: "./assets/images/garden-defense-cover.png",
+    coverPlaceholder: false,
+    media: [
+      {
+        type: "video",
+        src: "./assets/videos/garden-defense-demo.mp4",
+        poster: "./assets/images/garden-defense-cover.png",
+        title: "GAMEPLAY / 玩法演示",
+        alt: "花园防守 Unity 2D 塔防游戏玩法演示视频"
+      }
+    ],
+    tools: ["UNITY 2D", "TOWER DEFENSE", "TRAE AI", "植物布阵"],
+    role: "个人项目",
+    status: "",
+    modules: {
+      overview: {
+        label: "PROJECT OVERVIEW / 项目介绍",
+        body: "这是一款与 Trae AI 编程助手协作开发的 Unity 2D 塔防小游戏。游戏采用儿童简笔画风格，以清新明快的色彩、可爱的植物形象和直观的网格化战场，营造轻松易懂的游戏体验。玩法借鉴经典植物布阵防守类塔防游戏的设计思路，围绕阳光资源、植物选择与布阵、敌人防守等元素展开。",
+        facts: [
+          { label: "项目名称", value: "花园防守" },
+          { label: "游戏类型", value: "Unity 2D 塔防小游戏" },
+          { label: "美术风格", value: "儿童简笔画 / 卡通风格" },
+          { label: "开发工具", value: "Unity / Trae AI 编程助手" },
+          { label: "玩法方向", value: "植物布阵 / 阳光资源 / 塔防策略" },
+          { label: "项目定位", value: "个人游戏开发实践" }
+        ]
+      },
+      technical: {
+        label: "TECHNICAL BREAKDOWN / 技术说明",
+        items: [
+          {
+            title: "网格化战场与植物布阵",
+            body: "游戏以网格化战场组织防守位置，玩家可以根据敌人的推进路线选择合适的格子布置植物，通过不同位置的安排形成防线。",
+            tags: ["网格化战场", "植物布阵", "塔防策略"]
+          },
+          {
+            title: "阳光资源与功能单位",
+            body: "游戏通过阳光资源连接资源获取、植物选择和布阵决策。不同功能单位分别承担资源生产、射击防守与防御阻挡等作用，界面同时提供暂停、植物选择和移除等操作反馈。",
+            tags: ["阳光资源", "植物选择", "操作反馈"]
+          },
+          {
+            title: "Trae AI 辅助开发实践",
+            body: "项目与 Trae AI 编程助手协作完成，将塔防玩法构想逐步落实为可运行功能，并结合实际画面与操作反馈持续调整和迭代。开发重点在于游戏功能整合、问题排查，以及对 AI 辅助编程工作流的实践。",
+            tags: ["Trae AI", "AI 辅助编程", "功能整合"]
+          }
+        ]
+      }
+    },
+    links: [],
+    featured: false,
+  },
+  {
     id: "prop-gen-asset",
     slug: "nextgen-prop-asset",
     title: "次世代道具资产",
@@ -427,7 +572,7 @@ const projects = [
 const categories = [
   { key: "all",                label: "全部作品" },
   { key: "unity-game",         label: "Unity 游戏开发" },
-  { key: "ue5-game",           label: "UE5 游戏项目" },
+  { key: "ue5-game",           label: "Unreal 游戏项目" },
   { key: "ue5-environment",    label: "UE5 地编与环境设计" },
   { key: "photoshop-design",   label: "Photoshop 平面设计" },
   { key: "3d-modeling",        label: "三维建模" },
