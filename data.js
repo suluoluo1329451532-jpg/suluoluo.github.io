@@ -595,6 +595,37 @@ const projects = [
     links: [],
     featured: false,
   },
+  {
+    id: "photoshop-graphic-design",
+    slug: "graphic-design-archive",
+    title: "Photoshop 平面设计档案",
+    category: "Photoshop 平面设计",
+    filter: "photoshop-design",
+    year: "",
+    summary: "收录平面视觉设计作品，以数字档案的形式整理与展示。",
+    cover: "./assets/images/graphic-design/海报终稿 拷贝.jpg",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["Photoshop", "平面设计", "视觉设计", "数字档案"],
+    role: "个人项目",
+    status: "",
+    modules: {
+      overview: {
+        label: "GRAPHIC DESIGN ARCHIVE / 平面设计档案",
+        body: "收录平面视觉设计作品，以数字档案的形式整理与展示。",
+        facts: []
+      },
+      gallery: {
+        label: "PHOTOSHOP / GRAPHIC DESIGN",
+        intro: "收录平面视觉设计作品，以数字档案的形式整理与展示。",
+        items: [
+' + $data + @'
+        ]
+      }
+    },
+    links: [],
+    featured: false,
+  },
 ];
 
 /* Category definitions for the filter bar.

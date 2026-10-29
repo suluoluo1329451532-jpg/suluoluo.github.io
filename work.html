@@ -80,6 +80,14 @@
         </section>
       </article>
     </main>
+    <div class="detail-lightbox" id="detailLightbox" aria-hidden="true">
+      <div class="detail-lightbox-backdrop" id="detailLightboxBackdrop"></div>
+      <button class="detail-lightbox-close" id="detailLightboxClose" type="button" aria-label="关闭预览">×</button>
+      <div class="detail-lightbox-body">
+        <img id="detailLightboxImg" src="" alt="" />
+        <p class="detail-lightbox-caption" id="detailLightboxCaption"></p>
+      </div>
+    </div>
 
     <footer class="site-footer">
       <div class="footer-inner">
@@ -345,6 +353,48 @@
           });
           technicalSection.appendChild(grid);
           modulesEl.appendChild(technicalSection);
+        }
+
+        if (project.modules && project.modules.gallery && Array.isArray(project.modules.gallery.items) && project.modules.gallery.items.length) {
+          const gallery = project.modules.gallery;
+          const gallerySection = document.createElement("section");
+          gallerySection.className = "detail-module detail-gallery";
+          appendHeading(gallerySection, gallery.label || "GRAPHIC DESIGN ARCHIVE / 平面设计档案");
+          if (gallery.intro) {
+            const intro = document.createElement("p");
+            intro.className = "detail-gallery-intro";
+            intro.textContent = gallery.intro;
+            gallerySection.appendChild(intro);
+          }
+          const wall = document.createElement("div");
+          wall.className = "detail-gallery-wall";
+          gallery.items.forEach(function(gItem, gIdx) {
+            const fig = document.createElement("figure");
+            fig.className = "detail-gallery-item";
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "detail-gallery-thumb";
+            const img = document.createElement("img");
+            img.src = gItem.src;
+            img.alt = gItem.title || "";
+            img.loading = "lazy";
+            btn.appendChild(img);
+            btn.addEventListener("click", function() { openLightbox(gItem, gallerySection); });
+            fig.appendChild(btn);
+            const cap = document.createElement("figcaption");
+            const num = document.createElement("span");
+            num.className = "detail-gallery-num";
+            num.textContent = "ARCHIVE " + String(gIdx + 1).padStart(3, "0");
+            cap.appendChild(num);
+            const name = document.createElement("span");
+            name.className = "detail-gallery-name";
+            name.textContent = gItem.title || "";
+            cap.appendChild(name);
+            fig.appendChild(cap);
+            wall.appendChild(fig);
+          });
+          gallerySection.appendChild(wall);
+          modulesEl.appendChild(gallerySection);
         }
 
         if (!modulesEl.children.length) {
