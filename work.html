@@ -282,7 +282,7 @@
         }
         if (project.role) metaHtml += "<div><dt>职责</dt><dd>" + project.role + "</dd></div>";
         if (project.status) metaHtml += "<div><dt>状态</dt><dd>" + project.status + "</dd></div>";
-        metaEl.innerHTML = metaHtml || "<div><dt>信息</dt><dd>项目资料正在整理中</dd></div>";
+        if (metaHtml) metaEl.innerHTML = metaHtml;
 
         const modulesEl = document.getElementById("detailModules");
         modulesEl.innerHTML = "";
@@ -359,7 +359,7 @@
           const gallery = project.modules.gallery;
           const gallerySection = document.createElement("section");
           gallerySection.className = "detail-module detail-gallery";
-          appendHeading(gallerySection, gallery.label || "GRAPHIC DESIGN ARCHIVE / 平面设计档案");
+          if (gallery.label) appendHeading(gallerySection, gallery.label);
           if (gallery.intro) {
             const intro = document.createElement("p");
             intro.className = "detail-gallery-intro";
