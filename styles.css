@@ -2225,23 +2225,22 @@ h3 {
 
 .detail-gallery-wall {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+  grid-auto-rows: 8px;
+  grid-auto-flow: dense;
+  gap: 6px;
 }
 
 .detail-gallery-item {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
 }
 
 .detail-gallery-thumb {
   padding: 0;
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--radius);
   overflow: hidden;
-  background: var(--bg-elevated);
+  background: transparent;
   cursor: pointer;
   transition: border-color 0.2s var(--ease-smooth);
 }
@@ -2253,25 +2252,13 @@ h3 {
 .detail-gallery-thumb img {
   display: block;
   width: 100%;
-  height: 200px;
-  object-fit: contain;
-  background: #0D0D18;
+  height: auto;
+  border-radius: var(--radius);
 }
 
-.detail-gallery-num {
-  display: block;
-  color: var(--dim);
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.08em;
-}
-
+.detail-gallery-num,
 .detail-gallery-name {
-  display: block;
-  color: var(--text);
-  font-size: 0.78rem;
-  line-height: 1.4;
-  word-break: break-all;
+  display: none;
 }
 
 .detail-lightbox {

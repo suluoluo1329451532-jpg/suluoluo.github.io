@@ -381,20 +381,27 @@
             btn.appendChild(img);
             btn.addEventListener("click", function() { openLightbox(gItem, gallerySection); });
             fig.appendChild(btn);
-            const cap = document.createElement("figcaption");
-            const num = document.createElement("span");
-            num.className = "detail-gallery-num";
-            num.textContent = "ARCHIVE " + String(gIdx + 1).padStart(3, "0");
-            cap.appendChild(num);
-            const name = document.createElement("span");
-            name.className = "detail-gallery-name";
-            name.textContent = gItem.title || "";
-            cap.appendChild(name);
-            fig.appendChild(cap);
+            const setSpan = function() {
+              const h = img.getBoundingClientRect().height;
+              const rows = Math.max(1, Math.ceil((h + 6) / 14));
+              fig.style.gridRowEnd = "span " + rows;
+            };
+            if (img.complete && img.naturalHeight > 0) { setSpan(); }
+            else { img.addEventListener("load", setSpan, { once: true }); }
+
             wall.appendChild(fig);
           });
           gallerySection.appendChild(wall);
           modulesEl.appendChild(gallerySection);
+          window.addEventListener("resize", function() {
+            wall.querySelectorAll(".detail-gallery-item").forEach(function(item) {
+              const img = item.querySelector("img");
+              if (!img || !img.naturalHeight) return;
+              const h = img.getBoundingClientRect().height;
+              const rows = Math.max(1, Math.ceil((h + 6) / 14));
+              item.style.gridRowEnd = "span " + rows;
+            });
+          });
         }
 
         if (!modulesEl.children.length) {
