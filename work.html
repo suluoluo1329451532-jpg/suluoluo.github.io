@@ -106,6 +106,49 @@
         const notFound = document.getElementById("projectNotFound");
         const detail = document.getElementById("projectDetail");
 
+        const lightboxEl = document.getElementById("detailLightbox");
+        const lightboxImg = document.getElementById("detailLightboxImg");
+        const lightboxCaption = document.getElementById("detailLightboxCaption");
+        const lightboxClose = document.getElementById("detailLightboxClose");
+        const lightboxBackdrop = document.getElementById("detailLightboxBackdrop");
+        let lightboxScrollY = 0;
+
+        function closeLightbox() {
+          if (!lightboxEl.classList.contains("is-open")) return;
+          lightboxEl.classList.remove("is-open");
+          lightboxEl.setAttribute("aria-hidden", "true");
+          lightboxImg.removeAttribute("src");
+          lightboxImg.alt = "";
+          lightboxCaption.textContent = "";
+          document.body.classList.remove("is-lightbox-open");
+          window.scrollTo(0, lightboxScrollY);
+        }
+
+        function openLightbox(item) {
+          if (!item || !item.src) return;
+          lightboxScrollY = window.scrollY || window.pageYOffset || 0;
+          lightboxImg.src = item.src;
+          lightboxImg.alt = item.alt || item.title || "";
+          lightboxCaption.textContent = "";
+          lightboxCaption.hidden = true;
+          lightboxEl.classList.add("is-open");
+          lightboxEl.setAttribute("aria-hidden", "false");
+          document.body.classList.add("is-lightbox-open");
+          if (lightboxClose) lightboxClose.focus();
+        }
+
+        if (lightboxClose) {
+          lightboxClose.addEventListener("click", closeLightbox);
+        }
+        if (lightboxBackdrop) {
+          lightboxBackdrop.addEventListener("click", closeLightbox);
+        }
+        document.addEventListener("keydown", function(e) {
+          if (e.key === "Escape" && lightboxEl.classList.contains("is-open")) {
+            closeLightbox();
+          }
+        });
+
         if (!project) {
           notFound.style.display = "";
           document.title = "404 — YHN®";
@@ -384,7 +427,7 @@
             img.alt = gItem.title || "";
             img.loading = "lazy";
             btn.appendChild(img);
-            btn.addEventListener("click", function() { openLightbox(gItem, gallerySection); });
+            btn.addEventListener("click", function() { openLightbox(gItem); });
             fig.appendChild(btn);
 
 
