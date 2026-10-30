@@ -115,6 +115,11 @@
         notFound.style.display = "none";
         detail.style.display = "";
 
+        if (slug === "graphic-design-archive") {
+          const hero = document.querySelector(".detail-hero");
+          if (hero) hero.style.display = "none";
+        }
+
         document.title = project.title + " — YHN® Digital Art Archive";
         document.getElementById("detailCode").textContent = project.code || project.category;
         document.getElementById("detailCategory").textContent = project.category;
