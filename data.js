@@ -653,6 +653,588 @@ const projects = [
     links: [],
     featured: false,
   },
+  {
+    id: "3d-model-sword",
+    slug: "sword",
+    title: "宝剑",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/sword/高模.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/sword/初模.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/sword/低模线条.png", alt: "宝剑低模线条" },
+          { type: "image", src: "./assets/images/3d-models/sword/高模.png", alt: "宝剑高模" },
+          { type: "image", src: "./assets/images/3d-models/sword/xuanrantu.png", alt: "宝剑渲染图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-bed",
+    slug: "bed",
+    title: "床榻",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/bed/实物图.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/bed/床榻模型.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/bed/实物图.png", alt: "床榻实物图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-porcelain-vase",
+    slug: "porcelain-vase",
+    title: "瓷器瓶",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/porcelain-vase/ciqi.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/porcelain-vase/瓷器瓶模型.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/porcelain-vase/ciqi.png", alt: "瓷器瓶模型图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-girl-with-pearl-earring",
+    slug: "girl-with-pearl-earring",
+    title: "带珍珠耳环的少女",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/girl-with-pearl-earring/少女.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/girl-with-pearl-earring/少女模型.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/girl-with-pearl-earring/少女.png", alt: "带珍珠耳环的少女模型图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-seismoscope",
+    slug: "seismoscope",
+    title: "地动仪",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/seismoscope/地动仪整体.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/seismoscope/外部结构.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/seismoscope/地动仪贴图版本.jpg", alt: "地动仪贴图版本" },
+          { type: "image", src: "./assets/images/3d-models/seismoscope/地动仪整体.png", alt: "地动仪整体" },
+          { type: "image", src: "./assets/images/3d-models/seismoscope/底座.jpg", alt: "地动仪底座" },
+          { type: "image", src: "./assets/images/3d-models/seismoscope/高质量版本.jpg", alt: "地动仪高质量版本" },
+          { type: "image", src: "./assets/images/3d-models/seismoscope/内部图片.png", alt: "地动仪内部图片" },
+          { type: "image", src: "./assets/images/3d-models/seismoscope/A3版本整体.jpg", alt: "地动仪 A3 版本整体" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-chandelier",
+    slug: "chandelier",
+    title: "吊灯",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/chandelier/吊灯渲染完成2.jpg",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/chandelier/吊灯模型.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/chandelier/吊灯渲染完成2.jpg", alt: "吊灯渲染图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-earring",
+    slug: "earring",
+    title: "耳环",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/earring/白模.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/earring/高模.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/earring/白模.png", alt: "耳环白模" },
+          { type: "image", src: "./assets/images/3d-models/earring/右耳渲染完成图.png", alt: "右耳渲染完成图" },
+          { type: "image", src: "./assets/images/3d-models/earring/左耳渲染完成图.png", alt: "左耳渲染完成图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-rv",
+    slug: "rv-model",
+    title: "房车模型",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/rv-model/模型图片.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/rv-model/房车模型.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/rv-model/模型图片.png", alt: "房车模型图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-palace",
+    slug: "palace",
+    title: "宫殿",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/palace/正交视角.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/palace/顶视图.png", alt: "宫殿顶视图" },
+          { type: "image", src: "./assets/images/3d-models/palace/细节展示1.png", alt: "宫殿细节展示 1" },
+          { type: "image", src: "./assets/images/3d-models/palace/细节展示2.png", alt: "宫殿细节展示 2" },
+          { type: "image", src: "./assets/images/3d-models/palace/细节展示3.png", alt: "宫殿细节展示 3" },
+          { type: "image", src: "./assets/images/3d-models/palace/正交视角.png", alt: "宫殿正交视角" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-ancient-architecture",
+    slug: "ancient-architecture",
+    title: "古建筑",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/ancient-architecture/贴图版正面.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/ancient-architecture/古建筑模型.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/ancient-architecture/贴图版正面.png", alt: "古建筑贴图版正面" },
+          { type: "image", src: "./assets/images/3d-models/ancient-architecture/贴图版侧面.png", alt: "古建筑贴图版侧面" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-vase",
+    slug: "vase",
+    title: "花瓶",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/vase/我渲染的版本.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/vase/花瓶.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/vase/我渲染的版本.png", alt: "花瓶渲染版本" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-pistol",
+    slug: "pistol",
+    title: "手枪",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/pistol/成品.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/pistol/高模.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/pistol/成品.png", alt: "手枪成品图" },
+          { type: "image", src: "./assets/images/3d-models/pistol/高模.png", alt: "手枪高模" },
+          { type: "image", src: "./assets/images/3d-models/pistol/手枪初模.png", alt: "手枪初模" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-well",
+    slug: "well",
+    title: "水井",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/well/带渲染效果2.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/well/水井.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/well/带渲染效果2.png", alt: "水井渲染效果图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-incense-burner",
+    slug: "incense-burner",
+    title: "香炉",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/incense-burner/香炉图片.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/incense-burner/香炉模型.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/incense-burner/香炉图片.png", alt: "香炉模型图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-fox-and-plants",
+    slug: "fox-and-plants",
+    title: "小狐狸和花花草草",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/fox-and-plants/我渲染的小狐狸.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/fox-and-plants/小狐狸模型.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/fox-and-plants/发光蘑菇.jpg", alt: "发光蘑菇" },
+          { type: "image", src: "./assets/images/3d-models/fox-and-plants/龟背竹原模型.png", alt: "龟背竹原模型" },
+          { type: "image", src: "./assets/images/3d-models/fox-and-plants/建模合集.png", alt: "建模合集" },
+          { type: "image", src: "./assets/images/3d-models/fox-and-plants/未命名.png", alt: "小狐狸和花花草草未命名图" },
+          { type: "image", src: "./assets/images/3d-models/fox-and-plants/我渲染的渐变花花.jpg", alt: "渐变花花渲染图" },
+          { type: "image", src: "./assets/images/3d-models/fox-and-plants/我渲染的小狐狸.png", alt: "小狐狸渲染图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-star-ring-blade",
+    slug: "star-ring-blade",
+    title: "星海环刃",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/star-ring-blade/星海环刃.jpg",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/star-ring-blade/星海环刃.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/star-ring-blade/星海环刃.jpg", alt: "星海环刃渲染图" },
+          { type: "image", src: "./assets/images/3d-models/star-ring-blade/中模.png", alt: "星海环刃中模" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-chair",
+    slug: "chair",
+    title: "椅子",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/chair/渲染完成的椅子.jpg",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/chair/椅子模型.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/chair/渲染完成的椅子.jpg", alt: "渲染完成的椅子" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-screen-wall",
+    slug: "screen-wall",
+    title: "影壁",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/screen-wall/高质量版本.jpg",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/screen-wall/影壁模型.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/screen-wall/高质量版本.jpg", alt: "影壁高质量版本" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-oil-lamp",
+    slug: "oil-lamp",
+    title: "油灯",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/oil-lamp/油灯图.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/oil-lamp/1.0.fbx" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/oil-lamp/油灯图.png", alt: "油灯图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-rounded-sword",
+    slug: "rounded-sword",
+    title: "圆润宝剑",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/rounded-sword/模.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/rounded-sword/低模.jpg", alt: "圆润宝剑低模" },
+          { type: "image", src: "./assets/images/3d-models/rounded-sword/模.png", alt: "圆润宝剑模型图" },
+          { type: "image", src: "./assets/images/3d-models/rounded-sword/ca46f3392bc9f4b23bc68de733ca8d02.png", alt: "圆润宝剑参考图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
 ];
 
 /* Category definitions for the filter bar.

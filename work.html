@@ -157,10 +157,16 @@
 
         notFound.style.display = "none";
         detail.style.display = "";
+        window.currentProject = project;
 
         if (slug === "graphic-design-archive") {
           const hero = document.querySelector(".detail-hero");
           if (hero) hero.style.display = "none";
+        }
+
+        if (project.model3d && project.model3d.src) {
+          const heroMedia = document.querySelector(".detail-hero-media");
+          if (heroMedia) heroMedia.style.display = "none";
         }
 
         document.title = project.title + " — YHN® Digital Art Archive";
@@ -461,6 +467,15 @@
         adjEl.innerHTML = adjHtml;
       })();
     </script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="./model-viewer.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
