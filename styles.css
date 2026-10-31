@@ -712,6 +712,18 @@ h3 {
   aspect-ratio: 16 / 10;
 }
 
+.work-card--uniform {
+  grid-column: span 4;
+}
+
+.work-card--uniform .work-thumb {
+  aspect-ratio: 4 / 3;
+}
+
+.work-card--uniform .work-thumb img {
+  object-fit: contain;
+}
+
 .work-thumb {
   position: relative;
   display: block;
@@ -1533,6 +1545,10 @@ h3 {
     grid-column: span 2;
   }
 
+  .work-card--uniform {
+    grid-column: span 1;
+  }
+
   .work-card--tall .work-thumb {
     aspect-ratio: 16 / 10;
   }
@@ -1687,6 +1703,10 @@ h3 {
   .work-card--feature,
   .work-card--wide,
   .work-card--tall {
+    grid-column: 1 / -1;
+  }
+
+  .work-card--uniform {
     grid-column: 1 / -1;
   }
 

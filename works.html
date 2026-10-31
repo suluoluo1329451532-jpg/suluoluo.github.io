@@ -84,13 +84,17 @@
         function renderGrid(filter) {
           const list = filter === "all" ? projects : projects.filter(p => p.filter === filter);
           emptyState.style.display = list.length === 0 ? "" : "none";
+          const isUniform3D = filter === "3d-modeling";
+          grid.classList.toggle("is-uniform", isUniform3D);
           if (list.length === 0) {
             const category = categories.find(cat => cat.key === filter);
             emptyMessage.textContent = (category ? category.label : "当前筛选") + "暂时没有可展示的作品。";
           }
           grid.innerHTML = list.map((p, i) => {
             const sizes = ["feature", "wide", "tall", "wide", "tall", "wide"];
-            const sizeClass = " work-card--" + sizes[i % sizes.length];
+            const sizeClass = isUniform3D
+              ? " work-card--uniform"
+              : " work-card--" + sizes[i % sizes.length];
             return renderWorkCard(p, i, sizeClass);
           }).join("");
         }
