@@ -2329,6 +2329,11 @@ h3 {
   text-align: center;
 }
 
+.model-viewer-loading[hidden],
+.model-viewer-error[hidden] {
+  display: none;
+}
+
 .model-viewer-error {
   color: var(--accent);
 }
