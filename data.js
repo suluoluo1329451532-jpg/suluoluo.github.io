@@ -683,6 +683,63 @@ const projects = [
     links: [],
     featured: false
   },
+  {
+    id: "3d-model-pistol",
+    slug: "pistol",
+    title: "手枪",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/pistol/高模.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/pistol/pistol.glb" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/pistol/手枪初模.png", alt: "手枪初模" },
+          { type: "image", src: "./assets/images/3d-models/pistol/高模.png", alt: "手枪高模" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-rv",
+    slug: "rv-model",
+    title: "卡通房车",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/rv-model/模型图片.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "FBX"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/rv-model/rv.glb" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/rv-model/模型图片.png", alt: "卡通房车模型图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
 ];
 
 /* Category definitions for the filter bar.
