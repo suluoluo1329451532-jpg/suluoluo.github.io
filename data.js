@@ -668,7 +668,7 @@ const projects = [
     tools: ["3D MODEL", "FBX"],
     role: "",
     status: "",
-    model3d: { src: "./assets/models/sword/初模.fbx" },
+    model3d: { src: "./assets/models/sword/sword.glb" },
     modules: {
       gallery: {
         label: "",
