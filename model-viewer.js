@@ -50,9 +50,13 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
   let renderer;
   let controls;
 
-  const showError = () => {
+  const modelUrl = new URL(modelSource, document.baseURI).href;
+  const cacheBustedUrl = modelUrl + (modelUrl.includes("?") ? "" : "?v=20261031");
+
+  const showError = (err) => {
     loading.hidden = true;
     error.hidden = false;
+    error.textContent = "模型加载失败：" + (err && err.message ? err.message : "请检查模型路径或文件格式。");
   };
 
   const setModel = (object) => {
@@ -123,13 +127,13 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
     fillLight.position.set(2, -2, 1);
     scene.add(hemisphereLight, keyLight, rimLight, fillLight);
 
-    const fileExtension = modelSource.split(".").pop().toLowerCase();
+    const fileExtension = modelUrl.split("?")[0].split(".").pop().toLowerCase();
     if (fileExtension === "fbx") {
       const loader = new FBXLoader();
-      loader.load(modelSource, setModel, undefined, showError);
+      loader.load(cacheBustedUrl, setModel, undefined, showError);
     } else if (fileExtension === "glb" || fileExtension === "gltf") {
       const loader = new GLTFLoader();
-      loader.load(modelSource, (gltf) => setModel(gltf.scene), undefined, showError);
+      loader.load(cacheBustedUrl, (gltf) => setModel(gltf.scene), undefined, showError);
     } else {
       showError();
     }
