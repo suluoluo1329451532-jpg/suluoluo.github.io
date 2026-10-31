@@ -2244,17 +2244,14 @@ h3 {
 }
 
 .detail-gallery-wall {
-  columns: 3;
-  column-gap: 18px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  align-items: start;
 }
 
 .detail-gallery-item {
-  display: inline-block;
-  width: 100%;
-  margin: 0 0 18px;
-  break-inside: avoid;
-  page-break-inside: avoid;
-  vertical-align: top;
+  margin: 0;
 }
 
 .detail-gallery-thumb {
@@ -2277,14 +2274,6 @@ h3 {
   height: auto;
   max-width: 100%;
   object-fit: contain;
-}
-
-@media (max-width: 900px) {
-  .detail-gallery-wall { columns: 2; }
-}
-
-@media (max-width: 560px) {
-  .detail-gallery-wall { columns: 1; }
 }
 
 .model-viewer-section {
