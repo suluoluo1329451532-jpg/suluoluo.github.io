@@ -2,6 +2,8 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { FBXLoader } from "three/addons/loaders/FBXLoader.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { KTX2Loader } from "three/addons/loaders/KTX2Loader.js";
+import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 
 (function initModelViewer() {
   const project = window.currentProject;
@@ -133,6 +135,11 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
       loader.load(cacheBustedUrl, setModel, undefined, showError);
     } else if (fileExtension === "glb" || fileExtension === "gltf") {
       const loader = new GLTFLoader();
+      loader.setMeshoptDecoder(MeshoptDecoder);
+      const ktx2Loader = new KTX2Loader()
+        .setTranscoderPath("https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/basis/")
+        .detectSupport(renderer);
+      loader.setKTX2Loader(ktx2Loader);
       loader.load(cacheBustedUrl, (gltf) => setModel(gltf.scene), undefined, showError);
     } else {
       showError();

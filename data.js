@@ -740,6 +740,95 @@ const projects = [
     links: [],
     featured: false
   },
+  {
+    id: "3d-model-xinghai-ringblade",
+    slug: "xinghai-ringblade",
+    title: "星海环刃",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/star-ring-blade/1.jpg",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "GLB"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/star-ring-blade/ringblade.glb" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/star-ring-blade/1.jpg", alt: "星海环刃渲染图" },
+          { type: "image", src: "./assets/images/3d-models/star-ring-blade/中模.png", alt: "星海环刃中模" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-water-well",
+    slug: "water-well",
+    title: "水井",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/well/带渲染效果2.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "GLB"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/well/well.glb" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/well/带渲染效果2.png", alt: "水井渲染效果图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
+  {
+    id: "3d-model-palace",
+    slug: "palace",
+    title: "宫殿",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/palace/正交视角.png",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "GLB"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/palace/palace.glb" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/palace/正交视角.png", alt: "宫殿正交视角" },
+          { type: "image", src: "./assets/images/3d-models/palace/顶视图.png", alt: "宫殿顶视图" },
+          { type: "image", src: "./assets/images/3d-models/palace/细节展示1.png", alt: "宫殿细节展示1" },
+          { type: "image", src: "./assets/images/3d-models/palace/细节展示2.png", alt: "宫殿细节展示2" },
+          { type: "image", src: "./assets/images/3d-models/palace/细节展示3.png", alt: "宫殿细节展示3" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
 ];
 
 /* Category definitions for the filter bar.
