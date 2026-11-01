@@ -119,7 +119,7 @@ import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
     controls.saveState();
     resetButton.addEventListener("click", () => controls.reset());
 
-    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x1b1b2f, 1.1);
+    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x3a4150, 1.25);
     const keyLight = new THREE.DirectionalLight(0xffffff, 1.0);
     const rimLight = new THREE.DirectionalLight(0xff3cac, 0.35);
     const fillLight = new THREE.DirectionalLight(0x45f3e2, 0.22);

@@ -829,6 +829,34 @@ const projects = [
     links: [],
     featured: false
   },
+  {
+    id: "3d-model-crystal-chandelier",
+    slug: "crystal-chandelier",
+    title: "水晶吊灯",
+    category: "三维建模",
+    code: "WORKS / 3D MODEL",
+    filter: "3d-modeling",
+    year: "",
+    summary: "",
+    cover: "./assets/images/3d-models/chandelier/吊灯渲染完成2.jpg",
+    coverPlaceholder: false,
+    media: [],
+    tools: ["3D MODEL", "GLB"],
+    role: "",
+    status: "",
+    model3d: { src: "./assets/models/chandelier/chandelier.glb" },
+    modules: {
+      gallery: {
+        label: "",
+        intro: "",
+        items: [
+          { type: "image", src: "./assets/images/3d-models/chandelier/吊灯渲染完成2.jpg", alt: "水晶吊灯渲染图" }
+        ]
+      }
+    },
+    links: [],
+    featured: false
+  },
 ];
 
 /* Category definitions for the filter bar.

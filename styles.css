@@ -2288,9 +2288,9 @@ h3 {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
-  background: radial-gradient(circle at 50% 20%, rgba(69, 243, 226, 0.10), transparent 45%),
-              radial-gradient(circle at 15% 80%, rgba(255, 60, 172, 0.10), transparent 45%),
-              var(--bg-elevated);
+  background: radial-gradient(circle at 50% 20%, rgba(69, 243, 226, 0.08), transparent 45%),
+              radial-gradient(circle at 15% 80%, rgba(255, 60, 172, 0.08), transparent 45%),
+              radial-gradient(circle at 50% 35%, #454e5e 0%, #2c3340 50%, #191e28 100%);
 }
 
 .model-viewer canvas {
